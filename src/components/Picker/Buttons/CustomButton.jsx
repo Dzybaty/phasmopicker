@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import { Button } from '@material-ui/core';
 
 import useStyles from './styles';
 
-const EvidenceButton = ({
-  text, handleClick, isActive, ...props
+import { isActiveButtonSelector } from '../../../selectors';
+
+const CustomButton = ({
+  type, text, handleClick, ...props
 }) => {
   const css = useStyles(props);
+
+  const isActive = useSelector((state) => isActiveButtonSelector(state, type, text));
 
   return (
     <Button
@@ -20,14 +25,10 @@ const EvidenceButton = ({
   );
 };
 
-EvidenceButton.propTypes = {
+CustomButton.propTypes = {
+  type: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func,
+  handleClick: PropTypes.func.isRequired,
 };
 
-EvidenceButton.defaultProps = {
-  handleClick: () => null,
-};
-
-export default EvidenceButton;
+export default CustomButton;
