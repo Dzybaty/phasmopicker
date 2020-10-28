@@ -1,3 +1,22 @@
+export const ENTER_APP = 'ENTER_APP';
+export const enterApp = (page, sessionId) => ({
+  type: ENTER_APP,
+  page,
+  sessionId,
+});
+
+export const SET_SESSION_KEY = 'SET_SESSION_KEY';
+export const setSessionKey = (sessionKey) => ({
+  type: SET_SESSION_KEY,
+  sessionKey,
+});
+
+export const RESET_SESSION = 'RESET_SESSION';
+export const resetSession = () => ({ type: RESET_SESSION });
+
+export const RESET_SESSION_COMPLETE = 'RESET_SESSION_COMPLETE';
+export const resetSessionComplete = () => ({ type: RESET_SESSION_COMPLETE });
+
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const changePage = (page) => ({
   type: CHANGE_PAGE,
@@ -32,3 +51,10 @@ export const updateAnswersEveryoneButton = (isActive) => ({
 
 export const RESET_PICKER = 'RESET_PICKER';
 export const resetPicker = () => ({ type: RESET_PICKER });
+
+export const SET_PICKER_STATE = 'SET_PICKER_STATE';
+export const setPickerState = (data, key) => ({
+  type: SET_PICKER_STATE,
+  data,
+  key,
+});

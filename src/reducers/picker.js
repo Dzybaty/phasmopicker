@@ -3,6 +3,7 @@ import { remove } from 'lodash';
 import {
   FILTER_GHOSTS, UPDATE_SELECTED_QUESTS,
   UPDATE_GHOST_NAME, RESET_PICKER, UPDATE_ANSWERS_EVERYONE_BUTTON,
+  SET_PICKER_STATE,
 } from '../actions';
 
 import ghosts from '../data/ghosts';
@@ -17,7 +18,7 @@ import {
   CRUCIFIX, EVENT, MOTION, PHOTO, SINK, SMUDGE,
 } from '../data/quests';
 
-import filterGhostsByEvidences from '../utils';
+import { filterGhostsByEvidences } from '../utils';
 
 const defaultState = {
   selectedEvidences: [],
@@ -114,6 +115,18 @@ const picker = (state = defaultState, action) => {
       return {
         ...defaultState,
         selectedEvidences: [],
+      };
+    }
+
+    case SET_PICKER_STATE: {
+      const { data } = action;
+      const { selectedEvidences = [] } = data;
+
+      return {
+        ...state,
+        ...data,
+        selectedEvidences,
+        ghosts: filterGhostsByEvidences(ghosts, selectedEvidences),
       };
     }
 

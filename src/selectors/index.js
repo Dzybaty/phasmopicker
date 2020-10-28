@@ -1,12 +1,12 @@
 export const pageSelector = (state) => state.app.page;
 
+export const sessionIdSelector = (state) => state.app.sessionId;
+
+export const sessionKeySelector = (state) => state.app.sessionKey;
+
 export const selectedEvidencesSelector = (state) => state.picker.selectedEvidences;
 
-export const ghostsSelector = (state) => state.picker.ghosts;
-
 export const questButtonsStateSelector = (state) => state.picker.questButtons;
-
-export const ghostNameSelector = (state) => state.picker.ghostName;
 
 export const isActiveButtonSelector = (state, type, name) => {
   switch (type) {
@@ -27,3 +27,5 @@ export const isActiveButtonSelector = (state, type, name) => {
     }
   }
 };
+
+export const pickerStateSelector = (state) => state.picker;

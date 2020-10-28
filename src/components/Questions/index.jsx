@@ -7,6 +7,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Slide from '@material-ui/core/Slide';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import useStyles from './styles';
 
@@ -19,9 +20,11 @@ const Questions = ({ changePage }) => {
     <Slide direction="left" in mountOnEnter unmountOnExit>
       <Box className={css.wrapper}>
         <Box className={css.changePageButtonWrapper}>
-          <IconButton onClick={() => changePage('picker')} className={css.icon}>
-            <ArrowBackIosIcon />
-          </IconButton>
+          <Tooltip title="To Picker">
+            <IconButton onClick={() => changePage('picker')} className={css.icon}>
+              <ArrowBackIosIcon />
+            </IconButton>
+          </Tooltip>
           <Typography variant="h3" className={css.pageLabel}>Questions</Typography>
         </Box>
         <Box className={css.questionsWrapper}>

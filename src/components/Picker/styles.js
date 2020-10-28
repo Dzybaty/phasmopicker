@@ -8,7 +8,7 @@ export default makeStyles(({ palette }) => ({
     justifyContent: 'flex-start',
     width: '100%',
     minHeight: '100%',
-    padding: '20px 0',
+    padding: 0,
     background: palette.primary.main,
     color: palette.primary.contrastText,
   },
@@ -40,17 +40,26 @@ export default makeStyles(({ palette }) => ({
     padding: 50,
   },
 
-  changePageButtonWrapper: {
+  header: {
     width: '100%',
     display: 'flex',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+
+  sessionControls: {
+    display: 'flex',
+    height: 40,
+    width: '100%',
+    background: 'rgba(33, 33, 33, .6)',
     justifyContent: 'flex-end',
+    position: 'fixed',
+    zIndex: 10,
   },
 
-  icon: {
-    position: 'absolute',
-  },
-
-  pageLabel: {
-    margin: '0 auto',
+  sessionIdWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    marginRight: 5,
   },
 }));

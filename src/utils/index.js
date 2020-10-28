@@ -1,7 +1,20 @@
-import { filter, difference } from 'lodash';
+import { filter, find, difference } from 'lodash';
+import Cookies from 'universal-cookie';
 
-const filterGhostsByEvidences = (ghosts, evidences) => (
+const cookies = new Cookies();
+
+export const filterGhostsByEvidences = (ghosts, evidences) => (
   filter(ghosts, (ghost) => difference(evidences, ghost.evidences).length === 0)
 );
 
-export default filterGhostsByEvidences;
+export const setSessionId = (value) => {
+  cookies.set('sessionId', value, { maxAge: 28800 });
+};
+
+export const getSessionId = () => cookies.get('sessionId');
+
+export const resetSessionId = () => cookies.remove('sessionId');
+
+export const getSessionById = (id, objects) => (
+  find(objects, (el) => el.sessionId === id) || ''
+);

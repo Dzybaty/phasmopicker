@@ -33,6 +33,10 @@ export default createMuiTheme({
         fontFamily: 'Teko-Medium',
       },
 
+      h5: {
+        fontFamily: 'Teko-Medium',
+      },
+
       h6: {
         fontFamily: 'Teko-Medium',
       },

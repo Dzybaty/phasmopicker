@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Slide from '@material-ui/core/Slide';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import Slide from '@material-ui/core/Slide';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import {
   EMF, FINGERPRINTS, TEMPERATURE,
@@ -20,29 +22,32 @@ import {
   CRUCIFIX, EVENT, MOTION, PHOTO, SINK, SMUDGE,
 } from '../../data/quests';
 
-import {
-  ghostNameSelector,
-  selectedEvidencesSelector,
-  ghostsSelector,
-} from '../../selectors';
+import { pickerStateSelector, sessionIdSelector } from '../../selectors';
 
 import {
   updateGhostName, filterGhosts, updateSelectedQuests,
-  resetPicker, updateAnswersEveryoneButton,
+  resetPicker, updateAnswersEveryoneButton, setPickerState,
 } from '../../actions';
+
+import firebaseDataService from '../../services/firebaseData';
 
 import CustomButton from './Buttons/CustomButton';
 import GhostCard from './GhostCard';
 
 import useStyles from './styles';
 
-const Picker = ({ changePage }) => {
+const Picker = ({ changePage, resetSession }) => {
   const dispatch = useDispatch();
   const css = useStyles();
 
-  const selectedEvidences = useSelector((state) => selectedEvidencesSelector(state));
-  const filteredGhosts = useSelector((state) => ghostsSelector(state));
-  const ghostName = useSelector((state) => ghostNameSelector(state));
+  const pickerState = useSelector((state) => pickerStateSelector(state));
+  const sessionId = useSelector((state) => sessionIdSelector(state));
+
+  useEffect(() => {
+    firebaseDataService.getRef().on('child_changed', (data) => {
+      dispatch(setPickerState(data.val()));
+    });
+  }, [dispatch]);
 
   const handleGhostNameChange = (name) => {
     dispatch(updateGhostName(name));
@@ -64,14 +69,32 @@ const Picker = ({ changePage }) => {
     dispatch(resetPicker());
   };
 
+  const { ghostName, ghosts, selectedEvidences } = pickerState;
+
   return (
     <Slide direction="right" in mountOnEnter unmountOnExit>
       <Box className={css.wrapper}>
-        <Box className={css.changePageButtonWrapper}>
-          <Typography variant="h3" className={css.pageLabel}>Ghost Picker</Typography>
-          <IconButton onClick={() => changePage('questions')} className={css.icon}>
-            <ArrowForwardIosIcon />
-          </IconButton>
+        <Box className={css.sessionControls}>
+          {
+            sessionId !== '' && (
+              <Box className={css.sessionIdWrapper}>
+                <Typography>{`Session id: ${sessionId}`}</Typography>
+              </Box>
+            )
+          }
+          <Tooltip title="Exit room">
+            <IconButton onClick={() => resetSession()}>
+              <ExitToAppIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="To questions">
+            <IconButton onClick={() => changePage('questions')}>
+              <ArrowForwardIosIcon />
+            </IconButton>
+          </Tooltip>
+        </Box>
+        <Box className={css.header}>
+          <Typography variant="h3">Ghost Picker</Typography>
         </Box>
         <Box className={css.inputWrapper}>
           <TextField
@@ -106,12 +129,12 @@ const Picker = ({ changePage }) => {
         </Box>
         <Box className={css.ghostsWrapper}>
           {
-            filteredGhosts.map((ghost) => (
+            ghosts.map((ghost) => (
               <GhostCard data={ghost} key={ghost.name} selectedEvidences={selectedEvidences} />
             ))
           }
           {
-            isEmpty(filteredGhosts) ? (
+            isEmpty(ghosts) ? (
               <Box className={css.noEvidenceWrapper}>
                 <Typography variant="h6">
                   No ghosts with such combination of evidences
@@ -127,6 +150,7 @@ const Picker = ({ changePage }) => {
 
 Picker.propTypes = {
   changePage: PropTypes.func.isRequired,
+  resetSession: PropTypes.func.isRequired,
 };
 
 export default Picker;
