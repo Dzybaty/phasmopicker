@@ -1,4 +1,4 @@
-import { remove } from 'lodash';
+import { get, remove } from 'lodash';
 
 import {
   FILTER_GHOSTS, UPDATE_SELECTED_QUESTS,
@@ -120,7 +120,7 @@ const picker = (state = defaultState, action) => {
 
     case SET_PICKER_STATE: {
       const { data } = action;
-      const { selectedEvidences = [] } = data;
+      const selectedEvidences = get(data, 'selectedEvidences', []);
 
       return {
         ...state,

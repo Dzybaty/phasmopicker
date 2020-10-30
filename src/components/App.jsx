@@ -6,7 +6,7 @@ import {
   changePage, resetSession, setPickerState,
 } from '../actions';
 
-import { pageSelector, sessionIdSelector } from '../selectors';
+import { pageSelector, sessionIdSelector, sessionKeySelector } from '../selectors';
 
 import { resetSessionId } from '../utils';
 
@@ -22,6 +22,7 @@ const App = () => {
 
   const page = useSelector((state) => pageSelector(state));
   const sessionId = useSelector((state) => sessionIdSelector(state));
+  const sessionKey = useSelector((state) => sessionKeySelector(state));
 
   useEffect(() => {
     const onAppExit = () => dispatch(resetSession());
@@ -34,23 +35,12 @@ const App = () => {
   }, [dispatch, sessionId]);
 
   useEffect(() => {
-    const syncData = (data) => {
-      const value = data.val();
-
-      if (value.sessionId === sessionId) {
-        dispatch(setPickerState(value));
-      }
-    };
-
-    firebaseDataService.getRef().on('child_changed', (data) => {
-      syncData(data);
-    });
-
-    firebaseDataService.getRef().on('child_added', (data) => {
-      syncData(data);
-      firebaseDataService.getRef().off('child_added', () => {});
-    });
-  }, [dispatch, sessionId]);
+    if (sessionKey) {
+      firebaseDataService.getRef().child(sessionKey).on('value', (data) => {
+        dispatch(setPickerState(data.val()));
+      });
+    }
+  }, [dispatch, sessionId, sessionKey]);
 
   const handleChangePage = (newPage) => {
     dispatch(changePage(newPage));
