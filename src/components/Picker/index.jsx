@@ -45,9 +45,13 @@ const Picker = ({ changePage, resetSession }) => {
 
   useEffect(() => {
     firebaseDataService.getRef().on('child_changed', (data) => {
-      dispatch(setPickerState(data.val()));
+      const value = data.val();
+
+      if (value.sessionId === sessionId) {
+        dispatch(setPickerState(value));
+      }
     });
-  }, [dispatch]);
+  }, [dispatch, sessionId]);
 
   const handleGhostNameChange = (name) => {
     dispatch(updateGhostName(name));

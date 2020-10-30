@@ -14,6 +14,12 @@ export default makeStyles(({ palette }) => ({
   },
 
   inputWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
     margin: '10px 20px 10px 20px',
+  },
+
+  submitButton: {
+    marginTop: 5,
   },
 }));
