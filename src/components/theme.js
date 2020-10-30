@@ -18,10 +18,8 @@ export default createMuiTheme({
   overrides: {
     MuiTypography: {
       body1: {
-        // fontSize: '.8vw',
         fontFamily: 'SyneMono',
         '@media screen and (max-width: 1000px)': {
-          // fontSize: '3vw',
         },
       },
 

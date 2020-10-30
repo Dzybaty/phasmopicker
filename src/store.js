@@ -5,13 +5,19 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducers';
 import rootSaga from './sagas';
 
-const sagaMiddleware = createSagaMiddleware();
+const configureStore = () => {
+  const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware)),
-);
+  const store = createStore(
+    reducer,
+    process.env.REACT_APP_ENV === 'dev'
+      ? composeWithDevTools(applyMiddleware(sagaMiddleware))
+      : applyMiddleware(sagaMiddleware),
+  );
 
-sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga);
 
-export default store;
+  return store;
+};
+
+export default configureStore;
