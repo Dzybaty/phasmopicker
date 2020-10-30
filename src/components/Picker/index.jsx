@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,10 +26,8 @@ import { pickerStateSelector, sessionIdSelector } from '../../selectors';
 
 import {
   updateGhostName, filterGhosts, updateSelectedQuests,
-  resetPicker, updateAnswersEveryoneButton, setPickerState,
+  resetPicker, updateAnswersEveryoneButton,
 } from '../../actions';
-
-import firebaseDataService from '../../services/firebaseData';
 
 import CustomButton from './Buttons/CustomButton';
 import GhostCard from './GhostCard';
@@ -42,25 +40,6 @@ const Picker = ({ changePage, resetSession }) => {
 
   const pickerState = useSelector((state) => pickerStateSelector(state));
   const sessionId = useSelector((state) => sessionIdSelector(state));
-
-  useEffect(() => {
-    const syncData = (data) => {
-      const value = data.val();
-
-      if (value.sessionId === sessionId) {
-        dispatch(setPickerState(value));
-      }
-    };
-
-    firebaseDataService.getRef().on('child_changed', (data) => {
-      syncData(data);
-    });
-
-    firebaseDataService.getRef().on('child_added', (data) => {
-      syncData(data);
-      firebaseDataService.getRef().off('child_added', () => {});
-    });
-  }, [dispatch, sessionId]);
 
   const handleGhostNameChange = (name) => {
     dispatch(updateGhostName(name));

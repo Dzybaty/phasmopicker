@@ -3,32 +3,25 @@ import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import {
-  changePage, enterApp,
-  resetSession,
+  changePage, resetSession, setPickerState,
 } from '../actions';
 
-import { pageSelector } from '../selectors';
+import { pageSelector, sessionIdSelector } from '../selectors';
 
-import { getSessionId, resetSessionId } from '../utils';
+import { resetSessionId } from '../utils';
 
 import Picker from './Picker';
 import Questions from './Questions';
 import Login from './Login';
 
 import theme from './theme';
+import firebaseDataService from '../services/firebaseData';
 
 const App = () => {
   const dispatch = useDispatch();
 
   const page = useSelector((state) => pageSelector(state));
-
-  useEffect(() => {
-    const sessionId = getSessionId();
-
-    if (sessionId) {
-      dispatch(enterApp('picker', sessionId));
-    }
-  }, [dispatch]);
+  const sessionId = useSelector((state) => sessionIdSelector(state));
 
   useEffect(() => {
     const onAppExit = () => dispatch(resetSession());
@@ -38,7 +31,26 @@ const App = () => {
     return () => {
       window.removeEventListener('beforeunload', onAppExit);
     };
-  }, [dispatch]);
+  }, [dispatch, sessionId]);
+
+  useEffect(() => {
+    const syncData = (data) => {
+      const value = data.val();
+
+      if (value.sessionId === sessionId) {
+        dispatch(setPickerState(value));
+      }
+    };
+
+    firebaseDataService.getRef().on('child_changed', (data) => {
+      syncData(data);
+    });
+
+    firebaseDataService.getRef().on('child_added', (data) => {
+      syncData(data);
+      firebaseDataService.getRef().off('child_added', () => {});
+    });
+  }, [dispatch, sessionId]);
 
   const handleChangePage = (newPage) => {
     dispatch(changePage(newPage));

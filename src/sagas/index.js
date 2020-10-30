@@ -12,6 +12,22 @@ import {
   setPickerState, resetSessionComplete, resetPicker, setSessionKey,
 } from '../actions';
 
+const createPickerStateObject = (picker, sessionId) => {
+  const {
+    selectedEvidences, evidenceButtons, questButtons,
+    talksToEveryOne, ghostName,
+  } = picker;
+
+  return {
+    sessionId,
+    selectedEvidences,
+    evidenceButtons,
+    questButtons,
+    talksToEveryOne,
+    ghostName,
+  };
+};
+
 function* enterApp(action) {
   const { sessionId } = action;
 
@@ -23,6 +39,12 @@ function* enterApp(action) {
       const key = Object.keys(data.val())[0];
       yield put(setPickerState(session));
       yield put(setSessionKey(key));
+    } else {
+      const picker = yield select(pickerStateSelector);
+      const objectToStore = createPickerStateObject(picker, sessionId);
+
+      const newSessionKey = yield call(firebaseDataService.createSession, objectToStore);
+      yield put(setSessionKey(newSessionKey.key));
     }
   }
 }
@@ -43,19 +65,7 @@ function* handlePickerChange() {
   const sessionId = yield select(sessionIdSelector);
   const picker = yield select(pickerStateSelector);
 
-  const {
-    selectedEvidences, evidenceButtons, questButtons,
-    talksToEveryOne, ghostName,
-  } = picker;
-
-  const objectToStore = {
-    sessionId,
-    selectedEvidences,
-    evidenceButtons,
-    questButtons,
-    talksToEveryOne,
-    ghostName,
-  };
+  const objectToStore = createPickerStateObject(picker, sessionId);
 
   if (sessionKey && sessionId !== '') {
     yield call(firebaseDataService.updateSession, sessionKey, objectToStore);

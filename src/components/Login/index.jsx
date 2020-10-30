@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Box from '@material-ui/core/Box';
@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 import { enterApp } from '../../actions';
-import { setSessionId } from '../../utils';
+import { getSessionId, setSessionId } from '../../utils';
 
 import useStyles from './styles';
 
@@ -18,9 +18,22 @@ const Login = () => {
   const [sessionId, changeSessionId] = useState('');
   const [error, setError] = useState(null);
 
+  const sessionIdCookie = getSessionId();
+
+  useEffect(() => {
+    if (sessionIdCookie) {
+      dispatch(enterApp('picker', sessionIdCookie));
+    }
+  }, [dispatch, sessionIdCookie]);
+
   const validate = (value) => {
     if (value.length > 8) {
       setError('Value is too long (max 8)');
+      return false;
+    }
+
+    if (value !== '' && !(/^[0-9a-zA-Z]+$/).test(value)) {
+      setError('Only digits and letters');
       return false;
     }
 
