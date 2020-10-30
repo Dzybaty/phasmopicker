@@ -44,12 +44,21 @@ const Picker = ({ changePage, resetSession }) => {
   const sessionId = useSelector((state) => sessionIdSelector(state));
 
   useEffect(() => {
-    firebaseDataService.getRef().on('child_changed', (data) => {
+    const syncData = (data) => {
       const value = data.val();
 
       if (value.sessionId === sessionId) {
         dispatch(setPickerState(value));
       }
+    };
+
+    firebaseDataService.getRef().on('child_changed', (data) => {
+      syncData(data);
+    });
+
+    firebaseDataService.getRef().on('child_added', (data) => {
+      syncData(data);
+      firebaseDataService.getRef().off('child_added', () => {});
     });
   }, [dispatch, sessionId]);
 

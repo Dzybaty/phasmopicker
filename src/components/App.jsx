@@ -30,6 +30,16 @@ const App = () => {
     }
   }, [dispatch]);
 
+  useEffect(() => {
+    const onAppExit = () => dispatch(resetSession());
+
+    window.addEventListener('beforeunload', onAppExit);
+
+    return () => {
+      window.removeEventListener('beforeunload', onAppExit);
+    };
+  }, [dispatch]);
+
   const handleChangePage = (newPage) => {
     dispatch(changePage(newPage));
   };
