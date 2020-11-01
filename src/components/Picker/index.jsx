@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
+import clipboardCopy from 'clipboard-copy';
 
 import Slide from '@material-ui/core/Slide';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -41,6 +43,8 @@ const Picker = ({ changePage, resetSession }) => {
   const pickerState = useSelector((state) => pickerStateSelector(state));
   const sessionId = useSelector((state) => sessionIdSelector(state));
 
+  const [copyHintText, setCopyHintText] = useState('Click to copy');
+
   const handleGhostNameChange = (name) => {
     dispatch(updateGhostName(name));
   };
@@ -61,6 +65,16 @@ const Picker = ({ changePage, resetSession }) => {
     dispatch(resetPicker());
   };
 
+  const handleCopySessionIdClick = () => {
+    clipboardCopy(sessionId).then(() => {
+      setCopyHintText('Copied to clipboard!');
+
+      setTimeout(() => {
+        setCopyHintText('Click to copy');
+      }, 5000);
+    });
+  };
+
   const { ghostName, ghosts, selectedEvidences } = pickerState;
 
   return (
@@ -70,7 +84,10 @@ const Picker = ({ changePage, resetSession }) => {
           {
             sessionId !== '' && (
               <Box className={css.sessionIdWrapper}>
-                <Typography>{`Session id: ${sessionId}`}</Typography>
+                <Typography>Session id:</Typography>
+                <Tooltip title={copyHintText}>
+                  <Button onClick={handleCopySessionIdClick}>{sessionId}</Button>
+                </Tooltip>
               </Box>
             )
           }
