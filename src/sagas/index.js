@@ -2,7 +2,7 @@ import {
   call, put, takeEvery, select, takeLatest,
 } from 'redux-saga/effects';
 
-import { get, remove } from 'lodash';
+import { get, remove, debounce } from 'lodash';
 import { nanoid } from 'nanoid';
 
 import firebaseDataService from '../services/firebaseData';
@@ -19,6 +19,8 @@ import {
   setPickerState, resetSessionComplete, resetPicker, setSessionKey,
   setClientId,
 } from '../actions';
+
+const updateDebounced = debounce(firebaseDataService.updateSession, 800);
 
 const createPickerStateObject = (picker, sessionId) => {
   const {
@@ -118,7 +120,7 @@ function* handlePickerChange() {
   const objectToStore = createPickerStateObject(picker, sessionId);
 
   if (sessionKey && sessionId !== '') {
-    yield call(firebaseDataService.updateSession, sessionKey, objectToStore);
+    yield call(updateDebounced, sessionKey, objectToStore);
     return;
   }
 
