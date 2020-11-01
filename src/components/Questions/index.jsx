@@ -19,12 +19,14 @@ const Questions = ({ changePage }) => {
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
       <Box className={css.wrapper}>
-        <Box className={css.changePageButtonWrapper}>
+        <Box className={css.sessionControls}>
           <Tooltip title="To Picker">
-            <IconButton onClick={() => changePage('picker')} className={css.icon}>
+            <IconButton onClick={() => changePage('picker')}>
               <ArrowBackIosIcon />
             </IconButton>
           </Tooltip>
+        </Box>
+        <Box className={css.header}>
           <Typography variant="h3" className={css.pageLabel}>Questions</Typography>
         </Box>
         <Box className={css.questionsWrapper}>
@@ -32,7 +34,7 @@ const Questions = ({ changePage }) => {
             Object.keys(questions).map((key) => (
               <Fade in timeout={1000} key={key}>
                 <Box className={css.columnWrapper} key={key}>
-                  <Typography variant="h4" className={css.header} key={key}>{key}</Typography>
+                  <Typography variant="h4" className={css.questionHeader} key={key}>{key}</Typography>
                   {
                     questions[key].map((el) => (
                       <Typography key={el}>{el}</Typography>

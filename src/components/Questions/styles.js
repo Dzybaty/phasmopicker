@@ -8,21 +8,27 @@ export default makeStyles(({ palette }) => ({
     justifyContent: 'flex-start',
     width: '100%',
     minHeight: '100%',
-    padding: '20px 0',
+    padding: 0,
     background: palette.primary.main,
     color: palette.primary.contrastText,
     overflowX: 'hidden',
   },
 
-  changePageButtonWrapper: {
-    width: '100%',
+  sessionControls: {
     display: 'flex',
+    height: 40,
+    width: '100%',
+    background: 'rgba(33, 33, 33, .6)',
     justifyContent: 'flex-start',
-    paddingBottom: 10,
+    position: 'fixed',
+    zIndex: 10,
   },
 
-  icon: {
-    position: 'absolute',
+  header: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: 40,
   },
 
   pageLabel: {
@@ -47,7 +53,7 @@ export default makeStyles(({ palette }) => ({
     padding: '0 30px',
   },
 
-  header: {
+  questionHeader: {
     color: 'red',
   },
 }));
