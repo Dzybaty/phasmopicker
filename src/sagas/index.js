@@ -11,7 +11,7 @@ import {
   sessionIdSelector, clientIdSelector,
 } from '../selectors';
 
-import { getSessionById } from '../utils';
+import { getSessionById, getCurrentTimestamp } from '../utils';
 
 import {
   ENTER_APP, RESET_SESSION, UPDATE_ANSWERS_EVERYONE_BUTTON,
@@ -33,6 +33,7 @@ const createPickerStateObject = (picker, sessionId) => {
     questButtons,
     talksToEveryOne,
     ghostName,
+    updatedAt: getCurrentTimestamp(),
   };
 };
 
@@ -55,6 +56,7 @@ function* enterApp(action) {
         {
           ...session,
           clients,
+          updatedAt: getCurrentTimestamp(),
         },
       );
 
@@ -99,6 +101,7 @@ function* removeSession() {
       {
         ...session,
         clients,
+        updatedAt: getCurrentTimestamp(),
       },
     );
   }

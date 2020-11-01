@@ -15,6 +15,8 @@ export const getSessionId = () => cookies.get('sessionId');
 
 export const resetSessionId = () => cookies.remove('sessionId');
 
+export const getCurrentTimestamp = () => Date.now();
+
 export const getSessionById = (id, objects) => (
   find(objects, (el) => el.sessionId === id) || ''
 );
