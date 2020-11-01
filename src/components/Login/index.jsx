@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
 import { isEmpty } from 'lodash';
 
 import Box from '@material-ui/core/Box';
@@ -10,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Loader from '../Loader';
 
 import { enterApp, showLoader, hideLoader } from '../../actions';
-import { getSessionId, setSessionId } from '../../utils';
+import { getSessionId, setSessionId, generateUuid } from '../../utils';
 import firebaseDataService from '../../services/firebaseData';
 
 import useStyles from './styles';
@@ -21,6 +20,7 @@ const Login = () => {
 
   const [sessionId, changeSessionId] = useState('');
   const [session, setSession] = useState({});
+  const [error, setError] = useState(null);
   const [isJoinButtonPressed, setIsJoinButtonPressed] = useState(false);
 
   const sessionIdCookie = getSessionId();
@@ -38,14 +38,35 @@ const Login = () => {
     }
   });
 
+  useEffect(() => {
+    if (!session) {
+      setError('Session not found');
+    }
+  }, [session]);
+
+  const validate = () => {
+    if (sessionId.length !== 8) {
+      setError('Session id consists of 8 symbols');
+      return false;
+    }
+
+    if (!(/^[0-9A-D]+$/).test(sessionId)) {
+      setError('Wrong ID format');
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSessionIdChange = (value) => {
     setSession({});
+    setError(null);
     changeSessionId(value);
   };
 
   const handleCreateClick = (e) => {
     e.preventDefault();
-    const id = nanoid(10);
+    const id = generateUuid();
     dispatch(enterApp('picker', id));
     setSessionId(id);
   };
@@ -55,11 +76,13 @@ const Login = () => {
   };
 
   const handleJoinSession = () => {
-    dispatch(showLoader());
-    firebaseDataService.getSessionById(sessionId).then((data) => {
-      dispatch(hideLoader());
-      setSession(data.val());
-    });
+    if (validate()) {
+      dispatch(showLoader());
+      firebaseDataService.getSessionById(sessionId).then((data) => {
+        dispatch(hideLoader());
+        setSession(data.val());
+      });
+    }
   };
 
   const handleSoloLobby = () => {
@@ -77,8 +100,8 @@ const Login = () => {
               label="Session ID"
               variant="outlined"
               value={sessionId}
-              error={!session}
-              helperText={!session ? 'No such session' : ''}
+              error={!!error}
+              helperText={error}
               onChange={(e) => handleSessionIdChange(e.target.value)}
             />
             <Button className={css.submitButton} onClick={handleJoinSession}>Join</Button>

@@ -1,4 +1,5 @@
 import { filter, find, difference } from 'lodash';
+import { customAlphabet } from 'nanoid';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -20,3 +21,8 @@ export const getCurrentTimestamp = () => Date.now();
 export const getSessionById = (id, objects) => (
   find(objects, (el) => el.sessionId === id) || null
 );
+
+export const generateUuid = () => {
+  const nanoid = customAlphabet('123456789ABCD', 8);
+  return nanoid();
+};

@@ -3,7 +3,6 @@ import {
 } from 'redux-saga/effects';
 
 import { get, remove, debounce } from 'lodash';
-import { nanoid } from 'nanoid';
 
 import firebaseDataService from '../services/firebaseData';
 import {
@@ -11,7 +10,7 @@ import {
   sessionIdSelector, clientIdSelector,
 } from '../selectors';
 
-import { getSessionById, getCurrentTimestamp } from '../utils';
+import { getSessionById, getCurrentTimestamp, generateUuid } from '../utils';
 
 import {
   ENTER_APP, RESET_SESSION, UPDATE_ANSWERS_EVERYONE_BUTTON,
@@ -41,7 +40,7 @@ const createPickerStateObject = (picker, sessionId) => {
 
 function* enterApp(action) {
   const { sessionId } = action;
-  const clientId = nanoid(10);
+  const clientId = generateUuid();
 
   if (sessionId !== '') {
     const data = yield call(firebaseDataService.getSessionById, sessionId);
