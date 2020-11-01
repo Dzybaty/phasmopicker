@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^8.0.0",
     "lodash": "^4.17.20",
+    "nanoid": "^3.1.16",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

@@ -4,6 +4,8 @@ export const sessionIdSelector = (state) => state.app.sessionId;
 
 export const sessionKeySelector = (state) => state.app.sessionKey;
 
+export const clientIdSelector = (state) => state.app.clientId;
+
 export const selectedEvidencesSelector = (state) => state.picker.selectedEvidences;
 
 export const questButtonsStateSelector = (state) => state.picker.questButtons;

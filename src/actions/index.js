@@ -11,6 +11,12 @@ export const setSessionKey = (sessionKey) => ({
   sessionKey,
 });
 
+export const SET_CLIENT_ID = 'SET_CLIENT_ID';
+export const setClientId = (clientId) => ({
+  type: SET_CLIENT_ID,
+  clientId,
+});
+
 export const RESET_SESSION = 'RESET_SESSION';
 export const resetSession = () => ({ type: RESET_SESSION });
 
