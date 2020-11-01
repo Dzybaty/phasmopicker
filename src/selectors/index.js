@@ -30,4 +30,6 @@ export const isActiveButtonSelector = (state, type, name) => {
   }
 };
 
+export const loaderStateSelector = (state) => state.loader;
+
 export const pickerStateSelector = (state) => state.picker;

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { isEmpty } from 'lodash';
 
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import { enterApp } from '../../actions';
+import Loader from '../Loader';
+
+import { enterApp, showLoader, hideLoader } from '../../actions';
 import { getSessionId, setSessionId } from '../../utils';
+import firebaseDataService from '../../services/firebaseData';
 
 import useStyles from './styles';
 
@@ -16,7 +20,8 @@ const Login = () => {
   const css = useStyles();
 
   const [sessionId, changeSessionId] = useState('');
-  const [error, setError] = useState(null);
+  const [session, setSession] = useState({});
+  const [isJoinButtonPressed, setIsJoinButtonPressed] = useState(false);
 
   const sessionIdCookie = getSessionId();
 
@@ -26,51 +31,88 @@ const Login = () => {
     }
   }, [dispatch, sessionIdCookie]);
 
-  const validate = (value) => {
-    if (value.length > 8) {
-      setError('Value is too long (max 8)');
-      return false;
+  useEffect(() => {
+    if (session && !isEmpty(session)) {
+      setSessionId(sessionId);
+      dispatch(enterApp('picker', sessionId));
     }
-
-    if (value !== '' && !(/^[0-9a-zA-Z]+$/).test(value)) {
-      setError('Only digits and letters');
-      return false;
-    }
-
-    return true;
-  };
+  });
 
   const handleSessionIdChange = (value) => {
-    setError(null);
+    setSession({});
     changeSessionId(value);
   };
 
-  const handleClick = (e) => {
+  const handleCreateClick = (e) => {
     e.preventDefault();
-    const sessionIdNormalized = sessionId.replace(' ', '');
+    const id = nanoid(10);
+    dispatch(enterApp('picker', id));
+    setSessionId(id);
+  };
 
-    if (validate(sessionIdNormalized)) {
-      dispatch(enterApp('picker', sessionIdNormalized));
-      setSessionId(sessionIdNormalized);
-    }
+  const handleClickJoin = (state) => {
+    setIsJoinButtonPressed(state);
+  };
+
+  const handleJoinSession = () => {
+    dispatch(showLoader());
+    firebaseDataService.getSessionById(sessionId).then((data) => {
+      dispatch(hideLoader());
+      setSession(data.val());
+    });
+  };
+
+  const handleSoloLobby = () => {
+    setSessionId('');
+    dispatch(enterApp('picker', ''));
   };
 
   return (
     <Box className={css.wrapper}>
-      <Typography variant="h5">Enter your session id</Typography>
-      <Typography>Or leave it blank if you are playing solo.</Typography>
-      <form className={css.inputWrapper} noValidate autoComplete="off">
-        <TextField
-          id="sessionID"
-          label="Session ID"
-          variant="outlined"
-          value={sessionId}
-          error={!!error}
-          helperText={error}
-          onChange={(e) => handleSessionIdChange(e.target.value)}
-        />
-        <Button className={css.submitButton} type="submit" onClick={handleClick}>Go</Button>
-      </form>
+      {
+        isJoinButtonPressed ? (
+          <Box className={css.inputWrapper}>
+            <TextField
+              id="sessionID"
+              label="Session ID"
+              variant="outlined"
+              value={sessionId}
+              error={!session}
+              helperText={!session ? 'No such session' : ''}
+              onChange={(e) => handleSessionIdChange(e.target.value)}
+            />
+            <Button className={css.submitButton} onClick={handleJoinSession}>Join</Button>
+            <Button
+              className={css.submitButton}
+              onClick={() => handleClickJoin(false)}
+            >
+              Back
+            </Button>
+          </Box>
+        ) : (
+          <Box className={css.inputWrapper}>
+            <Button
+              className={css.submitButton}
+              onClick={handleCreateClick}
+            >
+              Create online lobby
+            </Button>
+            <Button
+              className={css.submitButton}
+              onClick={() => handleClickJoin(true)}
+            >
+              Join online lobby
+            </Button>
+            <Button
+              className={css.submitButton}
+              onClick={handleSoloLobby}
+            >
+              Enter solo lobby
+            </Button>
+          </Box>
+        )
+      }
+      <Loader />
     </Box>
   );
 };

@@ -87,6 +87,12 @@ function* removeSession() {
   const clientId = yield select(clientIdSelector);
   const key = yield select(sessionKeySelector);
 
+  if (sessionId === '') {
+    yield put(resetSessionComplete());
+    yield put(resetPicker());
+    return;
+  }
+
   const data = yield call(firebaseDataService.getSessionById, sessionId);
   const session = getSessionById(sessionId, data.val());
 

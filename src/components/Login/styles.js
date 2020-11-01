@@ -8,7 +8,6 @@ export default makeStyles(({ palette }) => ({
     justifyContent: 'center',
     width: '100%',
     minHeight: '100%',
-    padding: '20px 0',
     background: palette.primary.main,
     color: palette.primary.contrastText,
   },
