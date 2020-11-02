@@ -25,13 +25,14 @@ const App = () => {
   const sessionKey = useSelector((state) => sessionKeySelector(state));
 
   useEffect(() => {
-    const onAppExit = () => dispatch(resetSession());
+    const onAppExit = () => {
+      dispatch(resetSession());
+      return 'unloading';
+    };
 
     window.addEventListener('beforeunload', onAppExit);
 
-    return () => {
-      window.removeEventListener('beforeunload', onAppExit);
-    };
+    return () => window.removeEventListener('beforeunload', onAppExit);
   }, [dispatch, sessionId]);
 
   useEffect(() => {

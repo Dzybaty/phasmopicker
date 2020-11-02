@@ -12,6 +12,12 @@ export default makeStyles(({ palette }) => ({
     color: palette.primary.contrastText,
   },
 
+  subWrapper: {
+    padding: 5,
+    backgroundColor: 'rgba(0, 0, 0, .3)',
+    borderRadius: 10,
+  },
+
   inputWrapper: {
     display: 'flex',
     flexDirection: 'column',

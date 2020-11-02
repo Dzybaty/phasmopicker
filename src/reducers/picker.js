@@ -43,6 +43,7 @@ const defaultState = {
   },
   talksToEveryOne: false,
   ghostName: '',
+  clients: [],
 };
 
 const picker = (state = defaultState, action) => {

@@ -16,13 +16,11 @@ export const getSessionId = () => cookies.get('sessionId');
 
 export const resetSessionId = () => cookies.remove('sessionId');
 
-export const getCurrentTimestamp = () => Date.now();
-
 export const getSessionById = (id, objects) => (
   find(objects, (el) => el.sessionId === id) || null
 );
 
 export const generateUuid = () => {
-  const nanoid = customAlphabet('123456789ABCD', 8);
+  const nanoid = customAlphabet('0123456789', 6);
   return nanoid();
 };

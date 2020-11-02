@@ -7,10 +7,10 @@ import { get, remove, debounce } from 'lodash';
 import firebaseDataService from '../services/firebaseData';
 import {
   sessionKeySelector, pickerStateSelector,
-  sessionIdSelector, clientIdSelector,
+  sessionIdSelector, clientIdSelector, clientsSelector,
 } from '../selectors';
 
-import { getSessionById, getCurrentTimestamp, generateUuid } from '../utils';
+import { getSessionById, generateUuid } from '../utils';
 
 import {
   ENTER_APP, RESET_SESSION, UPDATE_ANSWERS_EVERYONE_BUTTON,
@@ -34,7 +34,6 @@ const createPickerStateObject = (picker, sessionId) => {
     questButtons,
     talksToEveryOne,
     ghostName,
-    updatedAt: getCurrentTimestamp(),
   };
 };
 
@@ -57,7 +56,6 @@ function* enterApp(action) {
         {
           ...session,
           clients,
-          updatedAt: getCurrentTimestamp(),
         },
       );
 
@@ -83,8 +81,6 @@ function* enterApp(action) {
 
 function* removeSession() {
   const sessionId = yield select(sessionIdSelector);
-  const clientId = yield select(clientIdSelector);
-  const key = yield select(sessionKeySelector);
 
   if (sessionId === '') {
     yield put(resetSessionComplete());
@@ -92,23 +88,24 @@ function* removeSession() {
     return;
   }
 
-  const data = yield call(firebaseDataService.getSessionById, sessionId);
-  const session = getSessionById(sessionId, data.val());
+  const clientId = yield select(clientIdSelector);
+  const key = yield select(sessionKeySelector);
+  const clients = yield select(clientsSelector);
 
-  const clients = get(session, 'clients', []);
-
-  if (clients.length === 1) {
+  if (clients.length < 2) {
     yield call(firebaseDataService.removeSession, key);
   } else {
+    const picker = yield select(pickerStateSelector);
+    const objectToStore = createPickerStateObject(picker, sessionId);
+
     remove(clients, (el) => el === clientId);
 
     yield call(
       firebaseDataService.updateSession,
       key,
       {
-        ...session,
+        ...objectToStore,
         clients,
-        updatedAt: getCurrentTimestamp(),
       },
     );
   }
