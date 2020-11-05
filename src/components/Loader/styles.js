@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
 export default makeStyles({
-  active: {
+  activeAbsolute: {
     position: 'absolute',
     display: 'flex',
     alignItems: 'center',
@@ -10,6 +10,10 @@ export default makeStyles({
     height: '100%',
     zIndex: 20,
     backgroundColor: 'rgba(0, 0, 0, .6)',
+  },
+
+  activeBox: {
+    width: '100%',
   },
 
   disabled: {

@@ -140,8 +140,8 @@ const Login = () => {
             </Box>
           )
         }
+        <Loader type="linear" />
       </Box>
-      <Loader />
     </Box>
   );
 };
