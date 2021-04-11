@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+import 'firebase/analytics';
 
 const config = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,5 +13,7 @@ const config = {
 };
 
 firebase.initializeApp(config);
+firebase.analytics();
 
-export default firebase.database();
+// eslint-disable-next-line import/prefer-default-export
+export const firebaseDB = firebase.database();

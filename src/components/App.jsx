@@ -32,7 +32,9 @@ const App = () => {
 
     window.addEventListener('beforeunload', onAppExit);
 
-    return () => window.removeEventListener('beforeunload', onAppExit);
+    return () => {
+      window.removeEventListener('beforeunload', onAppExit);
+    };
   }, [dispatch, sessionId]);
 
   useEffect(() => {
