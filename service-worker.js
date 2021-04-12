@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/phasmopicker/precache-manifest.22ccc849bf10de1440b5cae65f3ef0fd.js"
+  "/phasmopicker/precache-manifest.220289adfed9d6e1613843fe3e4c0817.js"
 );
 
 self.addEventListener('message', (event) => {
