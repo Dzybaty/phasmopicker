@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
@@ -24,17 +24,18 @@ import {
   CRUCIFIX, EVENT, MOTION, PHOTO, SINK, SMUDGE,
 } from '../../data/quests';
 
-import { pickerStateSelector, sessionIdSelector } from '../../selectors';
+import { pickerStateSelector, sessionIdSelector, sessionKeySelector } from '../../selectors';
 
 import {
   updateGhostName, filterGhosts, updateSelectedQuests,
-  resetPicker, updateAnswersEveryoneButton,
+  resetPicker, updateAnswersEveryoneButton, resetSession as resetSessionAction, setPickerState,
 } from '../../actions';
 
 import CustomButton from './Buttons/CustomButton';
 import GhostCard from './GhostCard';
 
 import useStyles from './styles';
+import firebaseDataService from '../../services/firebaseData';
 
 const Picker = ({ changePage, resetSession }) => {
   const dispatch = useDispatch();
@@ -42,8 +43,29 @@ const Picker = ({ changePage, resetSession }) => {
 
   const pickerState = useSelector((state) => pickerStateSelector(state));
   const sessionId = useSelector((state) => sessionIdSelector(state));
+  const sessionKey = useSelector((state) => sessionKeySelector(state));
 
   const [copyHintText, setCopyHintText] = useState('Click to copy');
+
+  useEffect(() => {
+    const onUnload = () => {
+      dispatch(resetSessionAction());
+    }
+
+    window.addEventListener('beforeunload', onUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', onUnload);
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (sessionKey) {
+      firebaseDataService.getRef().child(sessionKey).on('value', (data) => {
+        dispatch(setPickerState(data.val()));
+      });
+    }
+  }, [dispatch, sessionId, sessionKey]);
 
   const handleGhostNameChange = (name) => {
     dispatch(updateGhostName(name));

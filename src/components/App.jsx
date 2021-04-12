@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import React  from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 
 import {
-  changePage, resetSession, setPickerState,
+  changePage, resetSession,
 } from '../actions';
 
-import { pageSelector, sessionIdSelector, sessionKeySelector } from '../selectors';
+import { pageSelector } from '../selectors';
 
 import { resetSessionId } from '../utils';
 
@@ -15,35 +15,11 @@ import Questions from './Questions';
 import Login from './Login';
 
 import theme from './theme';
-import firebaseDataService from '../services/firebaseData';
 
 const App = () => {
   const dispatch = useDispatch();
 
   const page = useSelector((state) => pageSelector(state));
-  const sessionId = useSelector((state) => sessionIdSelector(state));
-  const sessionKey = useSelector((state) => sessionKeySelector(state));
-
-  useEffect(() => {
-    const onAppExit = () => {
-      dispatch(resetSession());
-      return 'unloading';
-    };
-
-    window.addEventListener('beforeunload', onAppExit);
-
-    return () => {
-      window.removeEventListener('beforeunload', onAppExit);
-    };
-  }, [dispatch, sessionId]);
-
-  useEffect(() => {
-    if (sessionKey) {
-      firebaseDataService.getRef().child(sessionKey).on('value', (data) => {
-        dispatch(setPickerState(data.val()));
-      });
-    }
-  }, [dispatch, sessionId, sessionKey]);
 
   const handleChangePage = (newPage) => {
     dispatch(changePage(newPage));
