@@ -24,3 +24,5 @@ export const generateUuid = () => {
   const nanoid = customAlphabet('0123456789', 6);
   return nanoid();
 };
+
+export const generateTimestamp = () => Math.floor(Date.now() / 1000);
