@@ -14,8 +14,8 @@ import {
 } from '../data/evidences';
 
 import {
-  EMF as EMF_QUEST, TEMPERATURE as TEMPERATURE_QUEST,
-  CRUCIFIX, EVENT, MOTION, PHOTO, SINK, SMUDGE,
+  EMF as EMF_QUEST, TEMPERATURE as TEMPERATURE_QUEST, CRUCIFIX, EVENT,
+  MOTION, PHOTO, SINK, SMUDGE, CANDLE, SALT, SANITY, HUNT, REPEL,
 } from '../data/quests';
 
 import { filterGhostsByEvidences } from '../utils';
@@ -40,6 +40,11 @@ const defaultState = {
     [EMF_QUEST]: false,
     [SMUDGE]: false,
     [EVENT]: false,
+    [CANDLE]: false,
+    [SALT]: false,
+    [SANITY]: false,
+    [HUNT]: false,
+    [REPEL]: false,
   },
   talksToEveryOne: false,
   ghostName: '',

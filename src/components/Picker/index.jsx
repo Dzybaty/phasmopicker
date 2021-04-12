@@ -20,8 +20,8 @@ import {
 } from '../../data/evidences';
 
 import {
-  EMF as EMF_QUEST, TEMPERATURE as TEMPERATURE_QUEST,
-  CRUCIFIX, EVENT, MOTION, PHOTO, SINK, SMUDGE,
+  EMF as EMF_QUEST, TEMPERATURE as TEMPERATURE_QUEST, CRUCIFIX, EVENT,
+  MOTION, PHOTO, SINK, SMUDGE, CANDLE, SALT, SANITY, HUNT, REPEL,
 } from '../../data/quests';
 
 import { pickerStateSelector, sessionIdSelector, sessionKeySelector } from '../../selectors';
@@ -50,7 +50,7 @@ const Picker = ({ changePage, resetSession }) => {
   useEffect(() => {
     const onUnload = () => {
       dispatch(resetSessionAction());
-    }
+    };
 
     window.addEventListener('beforeunload', onUnload);
 
@@ -157,6 +157,11 @@ const Picker = ({ changePage, resetSession }) => {
           <CustomButton type="quest" color="grey" text={SINK} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={SMUDGE} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={TEMPERATURE_QUEST} handleClick={handleQuestButtonClick} />
+          <CustomButton type="quest" color="grey" text={CANDLE} handleClick={handleQuestButtonClick} />
+          <CustomButton type="quest" color="grey" text={SALT} handleClick={handleQuestButtonClick} />
+          <CustomButton type="quest" color="grey" text={SANITY} handleClick={handleQuestButtonClick} />
+          <CustomButton type="quest" color="grey" text={HUNT} handleClick={handleQuestButtonClick} />
+          <CustomButton type="quest" color="grey" text={REPEL} handleClick={handleQuestButtonClick} />
         </Box>
         <Box className={css.ghostsWrapper}>
           {
