@@ -26,3 +26,5 @@ export const generateUuid = () => {
 };
 
 export const generateTimestamp = () => Math.floor(Date.now() / 1000);
+
+export const isDevEnv = () => process.env.REACT_APP_ENV === 'dev';
