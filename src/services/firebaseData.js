@@ -1,4 +1,5 @@
 import { firebaseDB } from '../firebase';
+import { generateTimestamp } from '../utils';
 
 class FirebaseDataService {
   getSessionById(sessionId) {
@@ -9,11 +10,17 @@ class FirebaseDataService {
   }
 
   createSession(session) {
-    return firebaseDB.ref().push(session);
+    return firebaseDB.ref().push({
+      ...session,
+      last_updated: generateTimestamp(),
+    });
   }
 
   updateSession(key, value) {
-    return firebaseDB.ref().child(key).update(value);
+    return firebaseDB.ref().child(key).update({
+      ...value,
+      last_updated: generateTimestamp(),
+    });
   }
 
   removeSession(key) {
