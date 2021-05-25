@@ -89,14 +89,14 @@ const ghosts = [
   },
 
   {
-    name: 'Yokai',
+    name: 'Yokai [BETA]',
     evidences: [SPIRIT_BOX, GHOST_ORB, GHOST_WRITING],
     strength: 'Talking near a Yokai will anger it and increase it\'s chance of attacking.',
     weakness: 'When hunting a Yokai can only hear voices close to it.',
   },
 
   {
-    name: 'Hantu',
+    name: 'Hantu [BETA]',
     evidences: [FINGERPRINTS, GHOST_ORB, GHOST_WRITING],
     strength: 'Moves faster in cooler areas.',
     weakness: 'Moves slower in warmer areas.',
