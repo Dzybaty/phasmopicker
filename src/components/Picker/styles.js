@@ -46,20 +46,4 @@ export default makeStyles(({ palette }) => ({
     justifyContent: 'center',
     marginTop: 40,
   },
-
-  sessionControls: {
-    display: 'flex',
-    height: 40,
-    width: '100%',
-    background: 'rgba(33, 33, 33, .6)',
-    justifyContent: 'flex-end',
-    position: 'fixed',
-    zIndex: 10,
-  },
-
-  sessionIdWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    marginRight: 5,
-  },
 }));
