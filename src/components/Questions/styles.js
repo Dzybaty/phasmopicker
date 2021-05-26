@@ -14,16 +14,6 @@ export default makeStyles(({ palette }) => ({
     overflowX: 'hidden',
   },
 
-  sessionControls: {
-    display: 'flex',
-    height: 40,
-    width: '100%',
-    background: 'rgba(33, 33, 33, .6)',
-    justifyContent: 'flex-start',
-    position: 'fixed',
-    zIndex: 10,
-  },
-
   header: {
     width: '100%',
     display: 'flex',

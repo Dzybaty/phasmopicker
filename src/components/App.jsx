@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -10,6 +10,7 @@ import { pageSelector } from '../selectors';
 
 import { resetSessionId } from '../utils';
 
+import Header from './Header';
 import Picker from './Picker';
 import Questions from './Questions';
 import Login from './Login';
@@ -34,13 +35,21 @@ const App = () => {
     switch (page) {
       case 'picker':
         return (
-          <Picker
-            changePage={handleChangePage}
-            resetSession={handleSessionReset}
-          />
+          <>
+            <Header resetSession={handleSessionReset} />
+            <Picker
+              changePage={handleChangePage}
+              resetSession={handleSessionReset}
+            />
+          </>
         );
       case 'questions':
-        return <Questions changePage={handleChangePage} />;
+        return (
+          <>
+            <Header resetSession={handleSessionReset} />
+            <Questions changePage={handleChangePage} />
+          </>
+        );
       default:
         return (
           <Login />
