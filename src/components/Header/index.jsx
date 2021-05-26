@@ -8,11 +8,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import IconButton from '@material-ui/core/IconButton';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import AssignmentIndOutlinedIcon from '@material-ui/icons/AssignmentIndOutlined';
 
 import { changePage } from '../../actions';
-import { sessionIdSelector } from '../../selectors';
+import { pageSelector, sessionIdSelector } from '../../selectors';
 
 import useStyles from './styles';
 
@@ -21,6 +21,7 @@ const Header = ({ resetSession }) => {
   const css = useStyles();
 
   const sessionId = useSelector((state) => sessionIdSelector(state));
+  const page = useSelector((state) => pageSelector(state));
 
   const [copyHintText, setCopyHintText] = useState('Click to copy');
 
@@ -42,13 +43,13 @@ const Header = ({ resetSession }) => {
     <div className={css.header}>
       <div className={css.navWrapper}>
         <Tooltip title="Picker">
-          <IconButton onClick={() => handleChangePage('picker')}>
-            <FormatListBulletedIcon />
+          <IconButton onClick={() => handleChangePage('picker')} className={css.headerButton}>
+            <AssignmentIndOutlinedIcon className={page === 'picker' ? css.btnActive : ''} />
           </IconButton>
         </Tooltip>
         <Tooltip title="Questions">
-          <IconButton onClick={() => handleChangePage('questions')}>
-            <ContactSupportIcon />
+          <IconButton onClick={() => handleChangePage('questions')} className={css.headerButton}>
+            <HelpOutlineIcon className={page === 'questions' ? css.btnActive : ''} />
           </IconButton>
         </Tooltip>
       </div>
@@ -58,13 +59,18 @@ const Header = ({ resetSession }) => {
             <div className={css.sessionIdWrapper}>
               <Typography>Session id:</Typography>
               <Tooltip title={copyHintText}>
-                <Button onClick={handleCopySessionIdClick}>{sessionId}</Button>
+                <Button
+                  onClick={handleCopySessionIdClick}
+                  className={css.headerButton}
+                >
+                  {sessionId}
+                </Button>
               </Tooltip>
             </div>
           )
         }
         <Tooltip title="Exit room">
-          <IconButton onClick={() => resetSession()}>
+          <IconButton onClick={() => resetSession()} className={css.headerButton}>
             <ExitToAppIcon />
           </IconButton>
         </Tooltip>

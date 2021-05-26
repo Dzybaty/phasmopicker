@@ -27,4 +27,13 @@ export default makeStyles({
     alignItems: 'center',
     marginRight: 5,
   },
+
+  headerButton: {
+    borderRadius: 5,
+  },
+
+  btnActive: {
+    color: '#f34423',
+    borderBottom: '2px solid #f34423',
+  },
 });
