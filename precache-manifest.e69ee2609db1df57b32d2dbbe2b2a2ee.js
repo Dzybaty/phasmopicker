@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "649d9f574e41d7776fc4cf19b63d2de6",
+    "revision": "0b844430a132e0df2eaf9ac0ac3d4652",
     "url": "/phasmopicker/index.html"
   },
   {
