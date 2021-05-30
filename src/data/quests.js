@@ -1,4 +1,3 @@
-export const SINK = 'Sink';
 export const PHOTO = 'Photo';
 export const EVENT = 'Event';
 export const MOTION = 'Motion';

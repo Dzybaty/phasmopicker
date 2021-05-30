@@ -13,8 +13,8 @@ import {
 } from '../../data/evidences';
 
 import {
-  EMF as EMF_QUEST, TEMPERATURE as TEMPERATURE_QUEST, CRUCIFIX, EVENT,
-  MOTION, PHOTO, SINK, SMUDGE, CANDLE, SALT, SANITY, HUNT, REPEL,
+  EMF as EMF_QUEST, CRUCIFIX, EVENT,
+  MOTION, PHOTO, SMUDGE, CANDLE, SALT, SANITY, HUNT, REPEL,
 } from '../../data/quests';
 
 import { pickerStateSelector, sessionIdSelector, sessionKeySelector } from '../../selectors';
@@ -106,16 +106,14 @@ const Picker = () => {
           <CustomButton type="evidence" color="cadetblue" text={SPIRIT_BOX} handleClick={handleEvidenceButtonClick} />
           <CustomButton type="evidence" color="brown" text={GHOST_ORB} handleClick={handleEvidenceButtonClick} />
         </Box>
-        <Typography variant="h4">Quests</Typography>
+        <Typography variant="h4">Objectives</Typography>
         <Box className={css.evidencesButtonsWrapper}>
           <CustomButton type="quest" color="grey" text={CRUCIFIX} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={EVENT} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={MOTION} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={PHOTO} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={EMF_QUEST} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={SINK} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={SMUDGE} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={TEMPERATURE_QUEST} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={CANDLE} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={SALT} handleClick={handleQuestButtonClick} />
           <CustomButton type="quest" color="grey" text={SANITY} handleClick={handleQuestButtonClick} />

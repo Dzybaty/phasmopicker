@@ -26,6 +26,7 @@ export default makeStyles(({ palette }) => ({
     alignItems: 'center',
     padding: '20px px',
     flexWrap: 'wrap',
+    margin: '5px 0',
   },
 
   ghostsWrapper: {
