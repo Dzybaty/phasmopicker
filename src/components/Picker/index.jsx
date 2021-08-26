@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import {
-  EMF, FINGERPRINTS, TEMPERATURE,
+  EMF, FINGERPRINTS, TEMPERATURE, DOTS,
   GHOST_WRITING, SPIRIT_BOX, GHOST_ORB,
 } from '../../data/evidences';
 
@@ -105,6 +105,7 @@ const Picker = () => {
           <CustomButton type="evidence" color="purple" text={GHOST_WRITING} handleClick={handleEvidenceButtonClick} />
           <CustomButton type="evidence" color="cadetblue" text={SPIRIT_BOX} handleClick={handleEvidenceButtonClick} />
           <CustomButton type="evidence" color="brown" text={GHOST_ORB} handleClick={handleEvidenceButtonClick} />
+          <CustomButton type="evidence" color="white" text={DOTS} handleClick={handleEvidenceButtonClick} />
         </Box>
         <Typography variant="h4">Objectives</Typography>
         <Box className={css.evidencesButtonsWrapper}>

@@ -9,7 +9,7 @@ import {
 import ghosts from '../data/ghosts';
 
 import {
-  EMF, FINGERPRINTS, TEMPERATURE,
+  EMF, FINGERPRINTS, TEMPERATURE, DOTS,
   GHOST_WRITING, SPIRIT_BOX, GHOST_ORB,
 } from '../data/evidences';
 
@@ -30,6 +30,7 @@ const defaultState = {
     [GHOST_WRITING]: false,
     [SPIRIT_BOX]: false,
     [GHOST_ORB]: false,
+    [DOTS]: false,
   },
   questButtons: {
     [PHOTO]: false,
