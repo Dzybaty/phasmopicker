@@ -4,13 +4,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import reducer from './reducers';
 import rootSaga from './sagas';
+import { isDevEnv } from './utils';
 
 const configureStore = () => {
   const sagaMiddleware = createSagaMiddleware();
 
   const store = createStore(
     reducer,
-    process.env.REACT_APP_ENV === 'dev'
+    isDevEnv()
       ? composeWithDevTools(applyMiddleware(sagaMiddleware))
       : applyMiddleware(sagaMiddleware),
   );
