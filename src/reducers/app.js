@@ -1,6 +1,6 @@
 import {
   CHANGE_PAGE, ENTER_APP, RESET_SESSION_COMPLETE,
-  SET_SESSION_KEY, SET_CLIENT_ID,
+  SET_SESSION_KEY, SET_CLIENT_ID, SET_APP_LANG,
 } from '../actions';
 
 const defaultState = {
@@ -8,6 +8,7 @@ const defaultState = {
   sessionId: '',
   sessionKey: null,
   clientId: null,
+  lang: 'en',
 };
 
 const app = (state = defaultState, action) => {
@@ -25,6 +26,7 @@ const app = (state = defaultState, action) => {
       const { page, sessionId } = action;
 
       return ({
+        ...state,
         page,
         sessionId,
       });
@@ -49,6 +51,15 @@ const app = (state = defaultState, action) => {
       return {
         ...state,
         sessionKey,
+      };
+    }
+
+    case SET_APP_LANG: {
+      const { newLang } = action;
+
+      return {
+        ...state,
+        lang: newLang,
       };
     }
 

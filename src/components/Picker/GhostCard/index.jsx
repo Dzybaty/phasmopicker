@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 
 import Box from '@material-ui/core/Box';
@@ -12,6 +13,7 @@ import useStyles from './styles';
 const GhostCard = ({ data, selectedEvidences }) => {
   const [isOpen, setIsOpen] = useState(false);
   const css = useStyles();
+  const { formatMessage } = useIntl();
 
   const {
     name, strength, weakness, evidences,
@@ -28,21 +30,21 @@ const GhostCard = ({ data, selectedEvidences }) => {
   return (
     <Fade in={isOpen} timeout={1000}>
       <Box className={css.root}>
-        <Typography variant="h4" className={css.header}>{name}</Typography>
-        <Typography variant="h6" color="secondary">Evidences</Typography>
+        <Typography variant="h4" className={css.header}>{formatMessage({ id: name })}</Typography>
+        <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.evidences' })}</Typography>
         {
           evidences.map((el) => (
             <Box key={el}>
               <Typography className={selectedEvidences.includes(el) ? css.accent : ''}>
-                {getEvidenceNameByKey(el)}
+                {formatMessage({ id: getEvidenceNameByKey(el) })}
               </Typography>
             </Box>
           ))
         }
-        <Typography variant="h6">Strength</Typography>
-        <Typography className={css.content}>{strength}</Typography>
-        <Typography variant="h6">Weakness</Typography>
-        <Typography className={css.content}>{weakness}</Typography>
+        <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.strength' })}</Typography>
+        <Typography className={css.content}>{formatMessage({ id: strength })}</Typography>
+        <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.weakness' })}</Typography>
+        <Typography className={css.content}>{formatMessage({ id: weakness })}</Typography>
       </Box>
     </Fade>
   );

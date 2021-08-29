@@ -35,3 +35,5 @@ export const isActiveButtonSelector = (state, type, name) => {
 export const loaderStateSelector = (state) => state.loader;
 
 export const pickerStateSelector = (state) => state.picker;
+
+export const currentLangSelector = (state) => state.app.lang;

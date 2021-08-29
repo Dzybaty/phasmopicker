@@ -10,13 +10,15 @@ import {
   sessionIdSelector, clientIdSelector, clientsSelector,
 } from '../selectors';
 
-import { getSessionById, generateUuid } from '../utils';
+import {
+  getSessionById, generateUuid, getUserLanguage, saveUserLanguage,
+} from '../utils';
 
 import {
-  ENTER_APP, RESET_SESSION, UPDATE_ANSWERS_EVERYONE_BUTTON,
+  ENTER_APP, RESET_SESSION, UPDATE_ANSWERS_EVERYONE_BUTTON, INIT_APP, SET_APP_LANG,
   UPDATE_SELECTED_QUESTS, UPDATE_GHOST_NAME, FILTER_GHOSTS, RESET_PICKER,
   setPickerState, resetSessionComplete, resetPicker, setSessionKey,
-  setClientId,
+  setClientId, setAppLang,
 } from '../actions';
 
 const updateDebounced = debounce(firebaseDataService.updateSession, 800);
@@ -132,7 +134,21 @@ function* handlePickerChange() {
   }
 }
 
+function* init() {
+  const userLang = getUserLanguage();
+
+  yield put(setAppLang(userLang));
+}
+
+function* updateUserLang(action) {
+  const { newLang } = action;
+
+  yield call(saveUserLanguage, newLang);
+}
+
 function* rootSaga() {
+  yield takeEvery(INIT_APP, init);
+  yield takeEvery(SET_APP_LANG, updateUserLang);
   yield takeEvery(ENTER_APP, enterApp);
   yield takeEvery(RESET_SESSION, removeSession);
   yield takeLatest([

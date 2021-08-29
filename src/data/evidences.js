@@ -9,37 +9,37 @@ export const DOTS = 'DOTS';
 export default [
   {
     key: EMF,
-    name: 'EMF',
+    localizedMessageId: 'evidence.emf',
     color: 'red',
   },
   {
     key: FINGERPRINTS,
-    name: 'Fingerprints',
+    localizedMessageId: 'evidence.fingerprints',
     color: 'green',
   },
   {
     key: TEMPERATURE,
-    name: 'Temperature',
+    localizedMessageId: 'evidence.temperature',
     color: 'dodgerblue',
   },
   {
     key: GHOST_WRITING,
-    name: 'Ghost Writing',
+    localizedMessageId: 'evidence.ghostWriting',
     color: 'purple',
   },
   {
     key: SPIRIT_BOX,
-    name: 'Spirit Box',
+    localizedMessageId: 'evidence.spiritBox',
     color: 'cadetblue',
   },
   {
     key: GHOST_ORB,
-    name: 'Ghost Orb',
+    localizedMessageId: 'evidence.ghostOrb',
     color: 'brown',
   },
   {
     key: DOTS,
-    name: 'D.O.T.S.',
+    localizedMessageId: 'evidence.dots',
     color: 'white',
   },
 ];

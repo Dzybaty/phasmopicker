@@ -27,4 +27,10 @@ export default makeStyles(({ palette }) => ({
   submitButton: {
     marginTop: 5,
   },
+
+  langSwitchWrapper: {
+    position: 'absolute',
+    right: '20px',
+    bottom: '20px',
+  },
 }));

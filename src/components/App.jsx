@@ -1,12 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { IntlProvider } from 'react-intl';
 
 import {
   changePage, resetSession,
 } from '../actions';
 
-import { pageSelector } from '../selectors';
+import langEN from '../lang/en.json';
+import langRU from '../lang/ru.json';
+
+import { pageSelector, currentLangSelector } from '../selectors';
 
 import { resetSessionId } from '../utils';
 
@@ -21,6 +25,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   const page = useSelector((state) => pageSelector(state));
+  const lang = useSelector((state) => currentLangSelector(state));
 
   const handleChangePage = (newPage) => {
     dispatch(changePage(newPage));
@@ -57,10 +62,28 @@ const App = () => {
     }
   };
 
+  const setUpMessagesLocale = () => {
+    switch (lang) {
+      case 'en': {
+        return langEN;
+      }
+
+      case 'ru': {
+        return langRU;
+      }
+
+      default: {
+        return langEN;
+      }
+    }
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      {renderPage()}
-    </ThemeProvider>
+    <IntlProvider messages={setUpMessagesLocale()} locale="en" defaultLocale="en">
+      <ThemeProvider theme={theme}>
+        {renderPage()}
+      </ThemeProvider>
+    </IntlProvider>
   );
 };
 

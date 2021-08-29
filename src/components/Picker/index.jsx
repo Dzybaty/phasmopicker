@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { isEmpty } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
+import { useIntl } from 'react-intl';
 
 import Slide from '@material-ui/core/Slide';
 import Box from '@material-ui/core/Box';
@@ -28,6 +29,7 @@ import QuestButton from './Buttons/QuestButton';
 const Picker = () => {
   const dispatch = useDispatch();
   const css = useStyles();
+  const { formatMessage } = useIntl();
 
   const pickerState = useSelector((state) => pickerStateSelector(state));
   const sessionId = useSelector((state) => sessionIdSelector(state));
@@ -84,36 +86,44 @@ const Picker = () => {
         <Box className={css.inputWrapper}>
           <TextField
             id="ghost-name"
-            label="Ghost Name"
+            label={formatMessage({ id: 'picker.ghostName' })}
             variant="outlined"
             value={ghostName}
             onChange={(e) => handleGhostNameChange(e.target.value)}
           />
-          <CustomButton type="talksToEveryOne" color="grey" text="Answers everyone" handleClick={handleAnswersEveryoneButton} />
-          <CustomButton type="reset" color="grey" text="Reset" handleClick={handleReset} />
+          <CustomButton
+            type="talksToEveryOne"
+            color="grey"
+            text={formatMessage({ id: 'picker.answersEveryone' })}
+            handleClick={handleAnswersEveryoneButton}
+          />
+          <CustomButton
+            type="reset"
+            color="grey"
+            text={formatMessage({ id: 'picker.reset' })}
+            handleClick={handleReset}
+          />
         </Box>
-        <Typography variant="h4">Evidences</Typography>
+        <Typography variant="h4">{formatMessage({ id: 'evidences' })}</Typography>
         <Box className={css.evidencesButtonsWrapper}>
           {
             EVIDENCES.map((evidence) => (
               <EvidenceButton
                 key={evidence.key}
-                evidence={evidence.key}
-                text={evidence.name}
+                evidence={evidence}
                 color={evidence.color}
                 handleClick={handleEvidenceButtonClick}
               />
             ))
           }
         </Box>
-        <Typography variant="h4">Objectives</Typography>
+        <Typography variant="h4">{formatMessage({ id: 'quests' })}</Typography>
         <Box className={css.evidencesButtonsWrapper}>
           {
             QUESTS.map((quest) => (
               <QuestButton
                 key={quest.key}
-                quest={quest.key}
-                text={quest.name}
+                quest={quest}
                 color="grey"
                 handleClick={handleQuestButtonClick}
               />
