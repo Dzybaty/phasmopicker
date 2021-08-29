@@ -1,31 +1,3 @@
-import { filter, find, difference } from 'lodash';
-import moment from 'moment';
-import { customAlphabet } from 'nanoid';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
-
-export const filterGhostsByEvidences = (ghosts, evidences) => (
-  filter(ghosts, (ghost) => difference(evidences, ghost.evidences).length === 0)
-);
-
-export const setSessionId = (value) => {
-  cookies.set('sessionId', value, { maxAge: 28800 });
-};
-
-export const getSessionId = () => cookies.get('sessionId');
-
-export const resetSessionId = () => cookies.remove('sessionId');
-
-export const getSessionById = (id, objects) => (
-  find(objects, (el) => el.sessionId === id) || null
-);
-
-export const generateUuid = () => {
-  const nanoid = customAlphabet('0123456789', 6);
-  return nanoid();
-};
-
-export const generateTimestamp = () => moment.utc().format();
-
-export const isDevEnv = () => process.env.REACT_APP_ENV === 'dev';
+export * from './session';
+export * from './evidences';
+export * from './misc';

@@ -7,10 +7,7 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import {
-  EMF, FINGERPRINTS, TEMPERATURE, DOTS,
-  GHOST_WRITING, SPIRIT_BOX, GHOST_ORB,
-} from '../../data/evidences';
+import EVIDENCES from '../../data/evidences';
 
 import {
   EMF as EMF_QUEST, CRUCIFIX, EVENT,
@@ -25,6 +22,7 @@ import {
 } from '../../actions';
 
 import CustomButton from './Buttons/CustomButton';
+import EvidenceButton from './Buttons/EvidenceButton';
 import GhostCard from './GhostCard';
 
 import useStyles from './styles';
@@ -99,13 +97,17 @@ const Picker = () => {
         </Box>
         <Typography variant="h4">Evidences</Typography>
         <Box className={css.evidencesButtonsWrapper}>
-          <CustomButton type="evidence" color="red" text={EMF} handleClick={handleEvidenceButtonClick} />
-          <CustomButton type="evidence" color="green" text={FINGERPRINTS} handleClick={handleEvidenceButtonClick} />
-          <CustomButton type="evidence" color="dodgerblue" text={TEMPERATURE} handleClick={handleEvidenceButtonClick} />
-          <CustomButton type="evidence" color="purple" text={GHOST_WRITING} handleClick={handleEvidenceButtonClick} />
-          <CustomButton type="evidence" color="cadetblue" text={SPIRIT_BOX} handleClick={handleEvidenceButtonClick} />
-          <CustomButton type="evidence" color="brown" text={GHOST_ORB} handleClick={handleEvidenceButtonClick} />
-          <CustomButton type="evidence" color="white" text={DOTS} handleClick={handleEvidenceButtonClick} />
+          {
+            EVIDENCES.map((evidence) => (
+              <EvidenceButton
+                key={evidence.key}
+                evidence={evidence.key}
+                text={evidence.name}
+                color={evidence.color}
+                handleClick={handleEvidenceButtonClick}
+              />
+            ))
+          }
         </Box>
         <Typography variant="h4">Objectives</Typography>
         <Box className={css.evidencesButtonsWrapper}>

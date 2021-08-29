@@ -8,10 +8,7 @@ import {
 
 import ghosts from '../data/ghosts';
 
-import {
-  EMF, FINGERPRINTS, TEMPERATURE, DOTS,
-  GHOST_WRITING, SPIRIT_BOX, GHOST_ORB,
-} from '../data/evidences';
+import EVIDENCES from '../data/evidences';
 
 import {
   EMF as EMF_QUEST, CRUCIFIX, EVENT,
@@ -20,18 +17,22 @@ import {
 
 import { filterGhostsByEvidences } from '../utils';
 
+const prepareDefaultEvidenceState = () => {
+  let evidences;
+  EVIDENCES.forEach((evidence) => {
+    evidences = {
+      ...evidences,
+      [evidence.key]: false,
+    };
+  });
+
+  return evidences;
+};
+
 const defaultState = {
   selectedEvidences: [],
   ghosts,
-  evidenceButtons: {
-    [EMF]: false,
-    [FINGERPRINTS]: false,
-    [TEMPERATURE]: false,
-    [GHOST_WRITING]: false,
-    [SPIRIT_BOX]: false,
-    [GHOST_ORB]: false,
-    [DOTS]: false,
-  },
+  evidenceButtons: prepareDefaultEvidenceState(),
   questButtons: {
     [PHOTO]: false,
     [MOTION]: false,

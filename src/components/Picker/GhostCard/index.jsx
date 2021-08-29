@@ -5,6 +5,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 
+import { getEvidenceNameByKey } from '../../../utils';
+
 import useStyles from './styles';
 
 const GhostCard = ({ data, selectedEvidences }) => {
@@ -31,7 +33,9 @@ const GhostCard = ({ data, selectedEvidences }) => {
         {
           evidences.map((el) => (
             <Box key={el}>
-              <Typography className={selectedEvidences.includes(el) ? css.accent : ''}>{el}</Typography>
+              <Typography className={selectedEvidences.includes(el) ? css.accent : ''}>
+                {getEvidenceNameByKey(el)}
+              </Typography>
             </Box>
           ))
         }
