@@ -49,5 +49,65 @@
 
   "ghost.banshee.name": "Banshee",
   "ghost.banshee.strength": "Only targets one player at a time.",
-  "ghost.banshee.weakness": "Crucifix radius is extended up to 5m."
+  "ghost.banshee.weakness": "Crucifix radius is extended up to 5m.",
+
+  "ghost.demon.name": "Demon",
+  "ghost.demon.strength": "Extremely aggressive.",
+  "ghost.demon.weakness": "Using right Ouija board questions does not drain sanity.",
+
+  "ghost.jinn.name": "Jinn",
+  "ghost.jinn.strength": "Moves faster the further away you are from it.",
+  "ghost.jinn.weakness": "Cutting off the location’s power supply will limit the Jinn’s speed.",
+
+  "ghost.mare.name": "Mare",
+  "ghost.mare.strength": "Attacks more frequently in the dark, tends to switch off lights.",
+  "ghost.mare.weakness": "More passive when lights are on.",
+
+  "ghost.oni.name": "Oni",
+  "ghost.oni.strength": "Activity depends on number of players close to it.",
+  "ghost.oni.weakness": "Easy to find when players move in group.",
+
+  "ghost.phantom.name": "Phantom",
+  "ghost.phantom.strength": "Looking at the Phantom will reduce your sanity more quickly.",
+  "ghost.phantom.weakness": "Capturing a photo will cause it to disappear, not during a hunt.",
+
+  "ghost.poltergeist.name": "Poltergeist",
+  "ghost.poltergeist.strength": "Actively interacts with environment, what decreases sanity faster.",
+  "ghost.poltergeist.weakness": "Helpless in rooms without throwable objects. Can be easily identified by lots of flying objects.",
+
+  "ghost.revenant.name": "Revenant",
+  "ghost.revenant.strength": "Moves 2x faster when chasing someone.",
+  "ghost.revenant.weakness": "Moves 2x slower when no one in sight.",
+
+  "ghost.shade.name": "Shade",
+  "ghost.shade.strength": "Minimal activity if players are in group, hard to find and detect.",
+  "ghost.shade.weakness": "Won't not hunt if several players are in it's room.",
+
+  "ghost.spirit.name": "Spirit",
+  "ghost.spirit.strength": "No strengths.",
+  "ghost.spirit.weakness": "Using smudge sticks prevent hunting for 5 minutes.",
+
+  "ghost.wraith.name": "Wraith",
+  "ghost.wraith.strength": "Footprint sounds from a Wraith will be rare to non-existent, and stepping in Salt will be less likely.",
+  "ghost.wraith.weakness": "Touching salt will increase it's activity.",
+
+  "ghost.yurei.name": "Yurei",
+  "ghost.yurei.strength": "Drains player sanity especially quickly (0.4%/s).",
+  "ghost.yurei.weakness": "Smudge stick in the same room will stop the Yurei from moving for 90 seconds.",
+
+  "ghost.yokai.name": "Yokai",
+  "ghost.yokai.strength": "Talking near a Yokai will anger it and increase it's chance of attacking.",
+  "ghost.yokai.weakness": "When hunting a Yokai can only hear voices close to it.",
+
+  "ghost.hantu.name": "Hantu",
+  "ghost.hantu.strength": "Moves faster in cooler areas.",
+  "ghost.hantu.weakness": "Moves slower in warmer areas.",
+
+  "ghost.goryo.name": "Goryo",
+  "ghost.goryo.strength": "Shows itself only if there are no people nearby. Can be seen on D.O.T.S. only through camera.",
+  "ghost.goryo.weakness": "Would migrate less likely.",
+
+  "ghost.myling.name": "Myling",
+  "ghost.myling.strength": "A Myling is known to be quieter when hunting.",
+  "ghost.myling.weakness": "More frequently makes paranormal sounds."
 }

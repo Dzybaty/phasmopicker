@@ -18,4 +18,8 @@ export default makeStyles(() => ({
   header: {
     color: 'red',
   },
+
+  subHeader: {
+    color: '#fdcf96',
+  },
 }));

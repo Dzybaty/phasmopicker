@@ -31,7 +31,7 @@ const GhostCard = ({ data, selectedEvidences }) => {
     <Fade in={isOpen} timeout={1000}>
       <Box className={css.root}>
         <Typography variant="h4" className={css.header}>{formatMessage({ id: name })}</Typography>
-        <Typography variant="h6" color="secondary">{formatMessage({ id: 'ghostCard.evidences' })}</Typography>
+        <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.evidences' })}</Typography>
         {
           evidences.map((el) => (
             <Box key={el}>
@@ -41,9 +41,9 @@ const GhostCard = ({ data, selectedEvidences }) => {
             </Box>
           ))
         }
-        <Typography variant="h6">{formatMessage({ id: 'ghostCard.strength' })}</Typography>
+        <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.strength' })}</Typography>
         <Typography className={css.content}>{formatMessage({ id: strength })}</Typography>
-        <Typography variant="h6">{formatMessage({ id: 'ghostCard.weakness' })}</Typography>
+        <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.weakness' })}</Typography>
         <Typography className={css.content}>{formatMessage({ id: weakness })}</Typography>
       </Box>
     </Fade>
