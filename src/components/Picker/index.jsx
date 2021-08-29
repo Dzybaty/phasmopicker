@@ -8,11 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
 import EVIDENCES from '../../data/evidences';
-
-import {
-  EMF as EMF_QUEST, CRUCIFIX, EVENT,
-  MOTION, PHOTO, SMUDGE, CANDLE, SALT, SANITY, HUNT, REPEL,
-} from '../../data/quests';
+import QUESTS from '../../data/quests';
 
 import { pickerStateSelector, sessionIdSelector, sessionKeySelector } from '../../selectors';
 
@@ -27,6 +23,7 @@ import GhostCard from './GhostCard';
 
 import useStyles from './styles';
 import firebaseDataService from '../../services/firebaseData';
+import QuestButton from './Buttons/QuestButton';
 
 const Picker = () => {
   const dispatch = useDispatch();
@@ -111,17 +108,17 @@ const Picker = () => {
         </Box>
         <Typography variant="h4">Objectives</Typography>
         <Box className={css.evidencesButtonsWrapper}>
-          <CustomButton type="quest" color="grey" text={CRUCIFIX} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={EVENT} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={MOTION} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={PHOTO} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={EMF_QUEST} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={SMUDGE} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={CANDLE} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={SALT} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={SANITY} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={HUNT} handleClick={handleQuestButtonClick} />
-          <CustomButton type="quest" color="grey" text={REPEL} handleClick={handleQuestButtonClick} />
+          {
+            QUESTS.map((quest) => (
+              <QuestButton
+                key={quest.key}
+                quest={quest.key}
+                text={quest.name}
+                color="grey"
+                handleClick={handleQuestButtonClick}
+              />
+            ))
+          }
         </Box>
         <Box className={css.ghostsWrapper}>
           {

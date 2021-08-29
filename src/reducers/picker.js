@@ -9,11 +9,7 @@ import {
 import ghosts from '../data/ghosts';
 
 import EVIDENCES from '../data/evidences';
-
-import {
-  EMF as EMF_QUEST, CRUCIFIX, EVENT,
-  MOTION, PHOTO, SMUDGE, CANDLE, SALT, SANITY, HUNT, REPEL,
-} from '../data/quests';
+import QUESTS from '../data/quests';
 
 import { filterGhostsByEvidences } from '../utils';
 
@@ -29,23 +25,23 @@ const prepareDefaultEvidenceState = () => {
   return evidences;
 };
 
+const prepareDefaultQuestState = () => {
+  let quests;
+  QUESTS.forEach((quest) => {
+    quests = {
+      ...quests,
+      [quest.key]: false,
+    };
+  });
+
+  return quests;
+};
+
 const defaultState = {
   selectedEvidences: [],
   ghosts,
   evidenceButtons: prepareDefaultEvidenceState(),
-  questButtons: {
-    [PHOTO]: false,
-    [MOTION]: false,
-    [CRUCIFIX]: false,
-    [EMF_QUEST]: false,
-    [SMUDGE]: false,
-    [EVENT]: false,
-    [CANDLE]: false,
-    [SALT]: false,
-    [SANITY]: false,
-    [HUNT]: false,
-    [REPEL]: false,
-  },
+  questButtons: prepareDefaultQuestState(),
   talksToEveryOne: false,
   ghostName: '',
   clients: [],
