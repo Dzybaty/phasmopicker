@@ -109,7 +109,9 @@ const Login = () => {
                 helperText={error}
                 onChange={(e) => handleSessionIdChange(e.target.value)}
               />
-              <Button className={css.submitButton} onClick={handleJoinSession}>Join</Button>
+              <Button className={css.submitButton} onClick={handleJoinSession}>
+                {formatMessage({ id: 'login.join.proceed' })}
+              </Button>
               <Divider />
               <Button
                 className={css.submitButton}

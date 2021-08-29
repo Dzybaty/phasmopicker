@@ -42,6 +42,7 @@
   "login.join": "Присоединится к онлайн-сессии",
   "login.solo": "Создать локальную сессию",
   "login.back": "Назад",
+  "login.join.proceed": "Присоединиться",
   "login.sessionId": "ID сессии",
   "login.error.notFound": "Сессия не найдена",
   "login.error.length": "ID сессии состоит из 6 цифр",

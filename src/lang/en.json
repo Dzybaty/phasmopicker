@@ -42,6 +42,7 @@
   "login.join": "Join online session",
   "login.solo": "Enter solo session",
   "login.back": "Back",
+  "login.join.proceed": "Join",
   "login.sessionId": "Session id",
   "login.error.notFound": "Session not found",
   "login.error.length": "Session id consists of 6 digits",
