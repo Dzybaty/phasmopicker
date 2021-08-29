@@ -1,0 +1,53 @@
+{
+  "evidences": "Улики",
+  "evidence.emf": "ЭМП",
+  "evidence.fingerprints": "Отпечатки",
+  "evidence.temperature": "Температура",
+  "evidence.ghostWriting": "Блокнот",
+  "evidence.spiritBox": "Радио",
+  "evidence.ghostOrb": "Огонек",
+  "evidence.dots": "Проектор",
+
+  "quests": "Задачи",
+  "quests.photo": "Фото",
+  "quests.event": "Явление",
+  "quests.motion": "Движение",
+  "quests.temperature": "Температура",
+  "quests.crucifix": "Распятие",
+  "quests.emf": "ЭМП",
+  "quests.smudge": "Благовония",
+  "quests.candle": "Свеча",
+  "quests.salt": "Соль",
+  "quests.sanity": "Рассудок",
+  "quests.hunt": "Побег",
+  "quests.repel": "Спугнуть",
+
+  "ghostCard.evidences": "Улики",
+  "ghostCard.strength": "Особенность",
+  "ghostCard.weakness": "Слабость",
+
+  "header.sessionId": "id сессии",
+  "header.tooltip.picker": "Главная",
+  "header.tooltip.questions": "Список вопросов",
+  "header.tooltip.lang": "Сменить язык",
+  "header.tooltip.copy": "Нажмите, чтобы копировать",
+  "header.tooltip.copied": "Скопировано!",
+  "header.tooltip.exit": "Выход",
+
+  "picker.ghostName": "Имя призрака",
+  "picker.answersEveryone": "Отвечает всем",
+  "picker.reset": "Сбросить",
+
+  "login.create": "Создать онлайн-сессию",
+  "login.join": "Присоединится к онлайн-сессии",
+  "login.solo": "Создать локальную сессию",
+  "login.back": "Назад",
+  "login.sessionId": "ID сессии",
+  "login.error.notFound": "Сессия не найдена",
+  "login.error.length": "ID сессии состоит из 6 цифр",
+  "login.error.format": "Неправильный формат",
+
+  "ghost.banshee.name": "Банши",
+  "ghost.banshee.strength": "Фокусируется на одном игроке, вплоть до его смерти.",
+  "ghost.banshee.weakness": "Радиус действия распятия увеличен на 5м."
+}

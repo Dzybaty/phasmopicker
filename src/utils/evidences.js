@@ -4,7 +4,7 @@ import EVIDENCES from '../data/evidences';
 export const getEvidenceNameByKey = (key) => {
   const evidence = EVIDENCES.find((e) => e.key === key);
   if (evidence) {
-    return evidence.name;
+    return evidence.localizedMessageId;
   }
 
   return undefined;

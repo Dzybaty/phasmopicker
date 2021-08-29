@@ -5,10 +5,10 @@ import {
 
 const ghosts = [
   {
-    name: 'Banshee',
+    name: 'ghost.banshee.name',
     evidences: [FINGERPRINTS, GHOST_ORB, DOTS],
-    strength: 'Only targets one player at a time.',
-    weakness: 'Hates the Crucifix.',
+    strength: 'ghost.banshee.strength',
+    weakness: 'ghost.banshee.weakness',
   },
 
   {

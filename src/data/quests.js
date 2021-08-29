@@ -14,50 +14,50 @@ const REPEL = 'REPEL';
 export default [
   {
     key: PHOTO,
-    name: 'Photo',
+    localizedMessageId: 'quests.photo',
   },
   {
     key: EVENT,
-    name: 'Event',
+    localizedMessageId: 'quests.event',
   },
   {
     key: MOTION,
-    name: 'Motion',
+    localizedMessageId: 'quests.motion',
   },
   {
     key: TEMPERATURE,
-    name: 'Temperature',
+    localizedMessageId: 'quests.temperature',
   },
   {
     key: CRUCIFIX,
-    name: 'Crucifix',
+    localizedMessageId: 'quests.crucifix',
   },
   {
     key: EMF,
-    name: 'EMF',
+    localizedMessageId: 'quests.emf',
   },
   {
     key: SMUDGE,
-    name: 'Smudge',
+    localizedMessageId: 'quests.smudge',
   },
   {
     key: CANDLE,
-    name: 'Candle',
+    localizedMessageId: 'quests.candle',
   },
   {
     key: SALT,
-    name: 'Salt',
+    localizedMessageId: 'quests.salt',
   },
   {
     key: SANITY,
-    name: 'Sanity',
+    localizedMessageId: 'quests.sanity',
   },
   {
     key: HUNT,
-    name: 'Hunt',
+    localizedMessageId: 'quests.hunt',
   },
   {
     key: REPEL,
-    name: 'Repel',
+    localizedMessageId: 'quests.repel',
   },
 ];

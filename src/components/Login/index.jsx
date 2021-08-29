@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { isEmpty } from 'lodash';
+import { useIntl } from 'react-intl';
 
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
@@ -8,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 import Loader from '../Loader';
+import LangSwitch from '../LangSwitch/LangSwitch';
 
 import { enterApp, showLoader, hideLoader } from '../../actions';
 import { getSessionId, setSessionId, generateUuid } from '../../utils';
@@ -18,6 +20,7 @@ import useStyles from './styles';
 const Login = () => {
   const dispatch = useDispatch();
   const css = useStyles();
+  const { formatMessage } = useIntl();
 
   const [sessionId, changeSessionId] = useState('');
   const [session, setSession] = useState({});
@@ -41,18 +44,18 @@ const Login = () => {
 
   useEffect(() => {
     if (!session) {
-      setError('Session not found');
+      setError(formatMessage({ id: 'login.error.notFound' }));
     }
-  }, [session]);
+  }, [session, formatMessage]);
 
   const validate = () => {
     if (sessionId.length !== 6) {
-      setError('Session id consists of 6 digits');
+      setError(formatMessage({ id: 'login.error.length' }));
       return false;
     }
 
     if (!(/^[0-9]+$/).test(sessionId)) {
-      setError('Wrong ID format');
+      setError(formatMessage({ id: 'login.error.format' }));
       return false;
     }
 
@@ -99,7 +102,7 @@ const Login = () => {
             <Box className={css.inputWrapper}>
               <TextField
                 id="sessionID"
-                label="Session ID"
+                label={formatMessage({ id: 'login.sessionId' })}
                 variant="outlined"
                 value={sessionId}
                 error={!!error}
@@ -112,7 +115,7 @@ const Login = () => {
                 className={css.submitButton}
                 onClick={() => handleClickJoin(false)}
               >
-                Back
+                {formatMessage({ id: 'login.back' })}
               </Button>
             </Box>
           ) : (
@@ -121,26 +124,29 @@ const Login = () => {
                 className={css.submitButton}
                 onClick={handleCreateClick}
               >
-                Create online session
+                {formatMessage({ id: 'login.create' })}
               </Button>
               <Divider />
               <Button
                 className={css.submitButton}
                 onClick={() => handleClickJoin(true)}
               >
-                Join online session
+                {formatMessage({ id: 'login.join' })}
               </Button>
               <Divider />
               <Button
                 className={css.submitButton}
                 onClick={handleSoloLobby}
               >
-                Enter solo session
+                {formatMessage({ id: 'login.solo' })}
               </Button>
             </Box>
           )
         }
         <Loader type="linear" />
+      </Box>
+      <Box className={css.langSwitchWrapper}>
+        <LangSwitch />
       </Box>
     </Box>
   );

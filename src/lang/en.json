@@ -1,0 +1,53 @@
+{
+  "evidences": "Evidences",
+  "evidence.emf": "EMF",
+  "evidence.fingerprints": "Fingerprints",
+  "evidence.temperature": "Temperature",
+  "evidence.ghostWriting": "Ghost Writing",
+  "evidence.spiritBox": "Spirit Box",
+  "evidence.ghostOrb": "Ghost Orb",
+  "evidence.dots": "D.O.T.S.",
+
+  "quests": "Objectives",
+  "quests.photo": "Photo",
+  "quests.event": "Event",
+  "quests.motion": "Motion",
+  "quests.temperature": "Temperature",
+  "quests.crucifix": "Crucifix",
+  "quests.emf": "EMF",
+  "quests.smudge": "Smudge",
+  "quests.candle": "Candle",
+  "quests.salt": "Salt",
+  "quests.sanity": "Sanity",
+  "quests.hunt": "Hunt",
+  "quests.repel": "Repel",
+
+  "ghostCard.evidences": "Evidences",
+  "ghostCard.strength": "Strength",
+  "ghostCard.weakness": "Weakness",
+
+  "header.sessionId": "Session id",
+  "header.tooltip.picker": "Picker",
+  "header.tooltip.questions": "Questions",
+  "header.tooltip.lang": "Change language",
+  "header.tooltip.copy": "Click to copy",
+  "header.tooltip.copied": "Copied!",
+  "header.tooltip.exit": "Exit",
+
+  "picker.ghostName": "Ghost Name",
+  "picker.answersEveryone": "Answers everyone",
+  "picker.reset": "Reset",
+
+  "login.create": "Create online session",
+  "login.join": "Join online session",
+  "login.solo": "Enter solo session",
+  "login.back": "Back",
+  "login.sessionId": "Session id",
+  "login.error.notFound": "Session not found",
+  "login.error.length": "Session id consists of 6 digits",
+  "login.error.format": "Wrong ID format",
+
+  "ghost.banshee.name": "Banshee",
+  "ghost.banshee.strength": "Only targets one player at a time.",
+  "ghost.banshee.weakness": "Crucifix radius is extended up to 5m."
+}

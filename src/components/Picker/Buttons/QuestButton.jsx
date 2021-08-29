@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useIntl } from 'react-intl';
 
 import { Button } from '@material-ui/core';
 
@@ -9,25 +10,28 @@ import useStyles from './styles';
 import { isActiveButtonSelector } from '../../../selectors';
 
 const QuestButton = ({
-  quest, text, handleClick, ...props
+  quest, handleClick, ...props
 }) => {
   const css = useStyles(props);
+  const { formatMessage } = useIntl();
 
-  const isActive = useSelector((state) => isActiveButtonSelector(state, 'quest', quest));
+  const isActive = useSelector((state) => isActiveButtonSelector(state, 'quest', quest.key));
 
   return (
     <Button
       className={isActive ? css.buttonSelected : css.button}
-      onClick={() => handleClick(quest, !isActive)}
+      onClick={() => handleClick(quest.key, !isActive)}
     >
-      {text}
+      {formatMessage({ id: quest.localizedMessageId })}
     </Button>
   );
 };
 
 QuestButton.propTypes = {
-  quest: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  quest: PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    localizedMessageId: PropTypes.string.isRequired,
+  }).isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 

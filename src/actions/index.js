@@ -1,3 +1,6 @@
+export const INIT_APP = 'INIT_APP';
+export const initApp = () => ({ type: INIT_APP });
+
 export const ENTER_APP = 'ENTER_APP';
 export const enterApp = (page, sessionId) => ({
   type: ENTER_APP,
@@ -70,3 +73,6 @@ export const showLoader = () => ({ type: SHOW_LOADER });
 
 export const HIDE_LOADER = 'HIDE_LOADER';
 export const hideLoader = () => ({ type: HIDE_LOADER });
+
+export const SET_APP_LANG = 'SET_APP_LANG';
+export const setAppLang = (newLang) => ({ type: SET_APP_LANG, newLang });
