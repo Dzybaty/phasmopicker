@@ -30,20 +30,37 @@ export default makeStyles(({ palette }) => ({
     flexWrap: 'wrap',
     width: '100%',
     alignItems: 'flex-start',
+    padding: 20,
+  },
+
+  toolWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+  },
+
+  toolHeader: {
+    width: '100%',
+    textAlign: 'center',
+    color: '#fdcf96',
+  },
+
+  toolContent: {
+    display: 'flex',
     justifyContent: 'space-around',
+    flexWrap: 'wrap',
     '@media screen and (max-width: 880px)': {
       justifyContent: 'flex-start',
     },
   },
 
-  columnWrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    padding: '0 30px',
+  categoryTitle: {
+    color: 'red',
   },
 
-  questionHeader: {
-    color: 'red',
+  categoryWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 20,
   },
 }));

@@ -81,7 +81,7 @@ const Picker = () => {
     <Slide direction="right" in mountOnEnter unmountOnExit>
       <Box className={css.wrapper}>
         <Box className={css.header}>
-          <Typography variant="h3">Ghost Picker</Typography>
+          <Typography variant="h3">{formatMessage({ id: 'picker.header' })}</Typography>
         </Box>
         <Box className={css.inputWrapper}>
           <TextField
