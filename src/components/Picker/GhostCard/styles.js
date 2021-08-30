@@ -4,6 +4,10 @@ export default makeStyles(() => ({
   root: {
     width: 200,
     padding: 20,
+    '@media screen and (max-width: 570px)': {
+      width: '100%',
+      padding: '20px 0',
+    },
   },
 
   content: {
