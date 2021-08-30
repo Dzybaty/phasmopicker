@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "935f25c28d7eb7f324e4386e6a4c75d2",
+    "revision": "2a72b1a189faab63a0a2577e15d78471",
     "url": "/phasmopicker/index.html"
   },
   {
-    "revision": "94acab4eeef35b4f6368",
+    "revision": "f790c837bc76191d4c36",
     "url": "/phasmopicker/static/css/main.28cc7bdf.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/phasmopicker/static/js/2.d1f008b6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "94acab4eeef35b4f6368",
-    "url": "/phasmopicker/static/js/main.290a8bdd.chunk.js"
+    "revision": "f790c837bc76191d4c36",
+    "url": "/phasmopicker/static/js/main.083ee6bc.chunk.js"
   },
   {
     "revision": "cc1a6d4811899b655f89",
