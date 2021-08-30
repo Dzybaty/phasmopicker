@@ -114,7 +114,7 @@ export default {
       ],
     },
     {
-      category: 'Location',
+      category: 'question.ouija.location',
       questions: [
         'question.ouija.location.1',
         'question.ouija.location.2',
