@@ -17,9 +17,16 @@ const config = {
 
 firebase.initializeApp(config);
 
-if (!isDevEnv()) {
-  firebase.analytics();
+// eslint-disable-next-line import/no-mutable-exports
+let analytics;
+
+if (isDevEnv()) {
+  analytics = {
+    logEvent: (eventName, options) => console.log('Mocked analytics request:', eventName, options),
+  };
+} else {
+  analytics = firebase.analytics();
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const firebaseDB = firebase.database();
+export { analytics };

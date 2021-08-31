@@ -21,10 +21,11 @@ import {
 import CustomButton from './Buttons/CustomButton';
 import EvidenceButton from './Buttons/EvidenceButton';
 import GhostCard from './GhostCard';
+import QuestButton from './Buttons/QuestButton';
 
 import useStyles from './styles';
 import firebaseDataService from '../../services/firebaseData';
-import QuestButton from './Buttons/QuestButton';
+import { analytics } from '../../firebase';
 
 const Picker = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,12 @@ const Picker = () => {
   const pickerState = useSelector((state) => pickerStateSelector(state));
   const sessionId = useSelector((state) => sessionIdSelector(state));
   const sessionKey = useSelector((state) => sessionKeySelector(state));
+
+  useEffect(() => {
+    analytics.logEvent('page_view', {
+      page_title: 'Picker',
+    });
+  }, [analytics]);
 
   useEffect(() => {
     const onUnload = () => {

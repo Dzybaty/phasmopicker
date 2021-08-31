@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 
 import Box from '@material-ui/core/Box';
@@ -7,12 +7,19 @@ import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 
 import QUESTIONS from '../../data/questions';
+import { analytics } from '../../firebase';
 
 import useStyles from './styles';
 
 const Questions = () => {
   const css = useStyles();
   const { formatMessage } = useIntl();
+
+  useEffect(() => {
+    analytics.logEvent('page_view', {
+      page_title: 'Questions',
+    });
+  }, [analytics]);
 
   const renderCategory = useCallback((block) => (
     <Box className={css.categoryWrapper}>
