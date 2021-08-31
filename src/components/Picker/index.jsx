@@ -40,7 +40,7 @@ const Picker = () => {
     analytics.logEvent('page_view', {
       page_title: 'Picker',
     });
-  }, [analytics]);
+  }, []);
 
   useEffect(() => {
     const onUnload = () => {

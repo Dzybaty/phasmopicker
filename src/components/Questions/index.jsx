@@ -19,18 +19,18 @@ const Questions = () => {
     analytics.logEvent('page_view', {
       page_title: 'Questions',
     });
-  }, [analytics]);
+  }, []);
 
   const renderCategory = useCallback((block) => (
-    <Box className={css.categoryWrapper}>
+    <Box className={css.categoryWrapper} key={block.category}>
       <Typography variant="h6" className={css.categoryTitle}>{formatMessage({ id: block.category })}</Typography>
       {
           block.questions.map((q) => (
-            <Typography>{formatMessage({ id: q })}</Typography>
+            <Typography key={q}>{formatMessage({ id: q })}</Typography>
           ))
         }
     </Box>
-  ), [formatMessage]);
+  ), [formatMessage, css]);
 
   return (
     <Slide direction="left" in mountOnEnter unmountOnExit>
