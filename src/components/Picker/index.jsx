@@ -37,9 +37,7 @@ const Picker = () => {
   const sessionKey = useSelector((state) => sessionKeySelector(state));
 
   useEffect(() => {
-    analytics.logEvent('page_view', {
-      page_title: 'Picker',
-    });
+    analytics.logEvent('picker_page_view');
   }, []);
 
   useEffect(() => {

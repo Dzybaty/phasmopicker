@@ -16,9 +16,7 @@ const Questions = () => {
   const { formatMessage } = useIntl();
 
   useEffect(() => {
-    analytics.logEvent('page_view', {
-      page_title: 'Questions',
-    });
+    analytics.logEvent('questions_page_view');
   }, []);
 
   const renderCategory = useCallback((block) => (
