@@ -6,14 +6,14 @@ import { Button } from '@material-ui/core';
 
 import useStyles from './styles';
 
-import { isActiveButtonSelector } from '../../../selectors';
+import { buttonStatusSelector } from '../../../selectors';
 
 const CustomButton = ({
   type, text, handleClick, ...props
 }) => {
   const css = useStyles(props);
 
-  const isActive = useSelector((state) => isActiveButtonSelector(state, type, text));
+  const isActive = useSelector((state) => buttonStatusSelector(state, type, text));
 
   return (
     <Button

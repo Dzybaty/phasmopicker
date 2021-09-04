@@ -23,9 +23,10 @@ import EvidenceButton from './Buttons/EvidenceButton';
 import GhostCard from './GhostCard';
 import QuestButton from './Buttons/QuestButton';
 
-import useStyles from './styles';
 import firebaseDataService from '../../services/firebaseData';
 import { analytics } from '../../firebase';
+
+import useStyles from './styles';
 
 const Picker = () => {
   const dispatch = useDispatch();
@@ -64,8 +65,8 @@ const Picker = () => {
     dispatch(updateGhostName(name));
   };
 
-  const handleEvidenceButtonClick = (evidence, isActive) => {
-    dispatch(filterGhosts(evidence, isActive));
+  const handleEvidenceButtonClick = (evidence, status) => {
+    dispatch(filterGhosts(evidence, status));
   };
 
   const handleQuestButtonClick = (quest, isActive) => {

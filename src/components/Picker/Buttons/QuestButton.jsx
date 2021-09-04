@@ -7,7 +7,7 @@ import { Button } from '@material-ui/core';
 
 import useStyles from './styles';
 
-import { isActiveButtonSelector } from '../../../selectors';
+import { buttonStatusSelector } from '../../../selectors';
 
 const QuestButton = ({
   quest, handleClick, ...props
@@ -15,7 +15,7 @@ const QuestButton = ({
   const css = useStyles(props);
   const { formatMessage } = useIntl();
 
-  const isActive = useSelector((state) => isActiveButtonSelector(state, 'quest', quest.key));
+  const isActive = useSelector((state) => buttonStatusSelector(state, 'quest', quest.key));
 
   return (
     <Button

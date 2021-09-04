@@ -33,10 +33,10 @@ export const changePage = (page) => ({
 });
 
 export const FILTER_GHOSTS = 'FILTER_GHOSTS';
-export const filterGhosts = (evidence, isActive) => ({
+export const filterGhosts = (evidence, status) => ({
   type: FILTER_GHOSTS,
   evidence,
-  isActive,
+  status,
 });
 
 export const UPDATE_SELECTED_QUESTS = 'UPDATE_SELECTED_QUESTS';

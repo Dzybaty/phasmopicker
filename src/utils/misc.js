@@ -1,10 +1,17 @@
-import { difference, filter } from 'lodash';
+import { difference, filter, intersection } from 'lodash';
 import { customAlphabet } from 'nanoid';
 import moment from 'moment';
 
-export const filterGhostsByEvidences = (ghosts, evidences) => (
-  filter(ghosts, (ghost) => difference(evidences, ghost.evidences).length === 0)
-);
+export const filterGhostsByEvidences = (ghosts, selectedEvidences, excludedEvidences) => {
+  const filteredBySelected = filter(
+    ghosts,
+    (ghost) => (difference(selectedEvidences, ghost.evidences).length === 0),
+  );
+  return filter(
+    filteredBySelected,
+    (ghost) => intersection(excludedEvidences, ghost.evidences).length === 0,
+  );
+};
 
 export const generateUuid = () => {
   const nanoid = customAlphabet('0123456789', 6);

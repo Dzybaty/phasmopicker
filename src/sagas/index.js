@@ -26,12 +26,13 @@ const updateDebounced = debounce(firebaseDataService.updateSession, 800);
 const createPickerStateObject = (picker, sessionId) => {
   const {
     selectedEvidences, evidenceButtons, questButtons,
-    talksToEveryOne, ghostName,
+    talksToEveryOne, ghostName, excludedEvidences,
   } = picker;
 
   return {
     sessionId,
     selectedEvidences,
+    excludedEvidences,
     evidenceButtons,
     questButtons,
     talksToEveryOne,

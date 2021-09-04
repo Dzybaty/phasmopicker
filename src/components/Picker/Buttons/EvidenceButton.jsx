@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useIntl } from 'react-intl';
 
 import { Button } from '@material-ui/core';
 
-import useStyles from './styles';
+import { EVIDENCE_STATUS_INIT, EVIDENCE_STATUS_SELECTED, EVIDENCE_STATUS_EXCLUDED } from '../../../constants';
+import { buttonStatusSelector } from '../../../selectors';
 
-import { isActiveButtonSelector } from '../../../selectors';
+import useStyles from './styles';
 
 const EvidenceButton = ({
   evidence, handleClick, ...props
@@ -15,12 +16,60 @@ const EvidenceButton = ({
   const css = useStyles(props);
   const { formatMessage } = useIntl();
 
-  const isActive = useSelector((state) => isActiveButtonSelector(state, 'evidence', evidence.key));
+  const currentEvidenceState = useSelector((state) => buttonStatusSelector(state, 'evidence', evidence.key));
+
+  const [evidenceState, setEvidenceState] = useState(currentEvidenceState);
+  const [buttonStyle, setButtonStyle] = useState(css.button);
+
+  useEffect(() => {
+    setEvidenceState(currentEvidenceState);
+    switch (currentEvidenceState) {
+      case EVIDENCE_STATUS_INIT: {
+        setButtonStyle(css.button);
+        break;
+      }
+      case EVIDENCE_STATUS_SELECTED: {
+        setButtonStyle(css.buttonSelected);
+        break;
+      }
+      case EVIDENCE_STATUS_EXCLUDED: {
+        setButtonStyle(css.buttonExcluded);
+        break;
+      }
+      default: {
+        setButtonStyle(css.button);
+      }
+    }
+  }, [currentEvidenceState, css]);
+
+  const handleButton = () => {
+    switch (evidenceState) {
+      case EVIDENCE_STATUS_INIT: {
+        setEvidenceState(EVIDENCE_STATUS_SELECTED);
+        setButtonStyle(css.buttonSelected);
+        handleClick(evidence.key, EVIDENCE_STATUS_SELECTED);
+        break;
+      }
+      case EVIDENCE_STATUS_SELECTED: {
+        setEvidenceState(EVIDENCE_STATUS_EXCLUDED);
+        setButtonStyle(css.buttonExcluded);
+        handleClick(evidence.key, EVIDENCE_STATUS_EXCLUDED);
+        break;
+      }
+      case EVIDENCE_STATUS_EXCLUDED: {
+        setEvidenceState(EVIDENCE_STATUS_INIT);
+        setButtonStyle(css.button);
+        handleClick(evidence.key, EVIDENCE_STATUS_INIT);
+        break;
+      }
+      default: break;
+    }
+  };
 
   return (
     <Button
-      className={isActive ? css.buttonSelected : css.button}
-      onClick={() => handleClick(evidence.key, !isActive)}
+      className={buttonStyle}
+      onClick={handleButton}
     >
       {formatMessage({ id: evidence.localizedMessageId })}
     </Button>

@@ -6,6 +6,8 @@ import {
   SET_PICKER_STATE,
 } from '../actions';
 
+import { EVIDENCE_STATUS_INIT, EVIDENCE_STATUS_SELECTED, EVIDENCE_STATUS_EXCLUDED } from '../constants';
+
 import ghosts from '../data/ghosts';
 
 import EVIDENCES from '../data/evidences';
@@ -18,7 +20,7 @@ const prepareDefaultEvidenceState = () => {
   EVIDENCES.forEach((evidence) => {
     evidences = {
       ...evidences,
-      [evidence.key]: false,
+      [evidence.key]: 'init',
     };
   });
 
@@ -39,6 +41,7 @@ const prepareDefaultQuestState = () => {
 
 const defaultState = {
   selectedEvidences: [],
+  excludedEvidences: [],
   ghosts,
   evidenceButtons: prepareDefaultEvidenceState(),
   questButtons: prepareDefaultQuestState(),
@@ -50,30 +53,40 @@ const defaultState = {
 const picker = (state = defaultState, action) => {
   switch (action.type) {
     case FILTER_GHOSTS: {
-      const { evidence, isActive } = action;
-      const { selectedEvidences } = state;
+      const { evidence, status } = action;
+      const { selectedEvidences, excludedEvidences } = state;
 
       const updatedButtonsState = {
         ...state.evidenceButtons,
-        [evidence]: isActive,
+        [evidence]: status,
       };
 
-      if (isActive) {
+      let filteredGhosts = [];
+
+      if (status === EVIDENCE_STATUS_SELECTED) {
         selectedEvidences.push(evidence);
 
-        const filteredGhosts = filterGhostsByEvidences(ghosts, selectedEvidences);
-
-        return {
-          ...state,
-          ghosts: filteredGhosts,
-          selectedEvidences,
-          evidenceButtons: updatedButtonsState,
-        };
+        filteredGhosts = filterGhostsByEvidences(
+          ghosts, selectedEvidences, excludedEvidences,
+        );
       }
 
-      remove(selectedEvidences, (el) => el === evidence);
+      if (status === EVIDENCE_STATUS_EXCLUDED) {
+        remove(selectedEvidences, (el) => el === evidence);
+        excludedEvidences.push(evidence);
 
-      const filteredGhosts = filterGhostsByEvidences(ghosts, selectedEvidences);
+        filteredGhosts = filterGhostsByEvidences(
+          ghosts, selectedEvidences, excludedEvidences,
+        );
+      }
+
+      if (status === EVIDENCE_STATUS_INIT) {
+        remove(excludedEvidences, (el) => el === evidence);
+
+        filteredGhosts = filterGhostsByEvidences(
+          ghosts, selectedEvidences, excludedEvidences,
+        );
+      }
 
       return {
         ...state,
@@ -117,18 +130,21 @@ const picker = (state = defaultState, action) => {
       return {
         ...defaultState,
         selectedEvidences: [],
+        excludedEvidences: [],
       };
     }
 
     case SET_PICKER_STATE: {
       const { data } = action;
       const selectedEvidences = get(data, 'selectedEvidences', []);
+      const excludedEvidences = get(data, 'excludedEvidences', []);
 
       return {
         ...state,
         ...data,
         selectedEvidences,
-        ghosts: filterGhostsByEvidences(ghosts, selectedEvidences),
+        excludedEvidences,
+        ghosts: filterGhostsByEvidences(ghosts, selectedEvidences, excludedEvidences),
       };
     }
 

@@ -12,7 +12,7 @@ export const questButtonsStateSelector = (state) => state.picker.questButtons;
 
 export const clientsSelector = (state) => state.picker.clients;
 
-export const isActiveButtonSelector = (state, type, name) => {
+export const buttonStatusSelector = (state, type, name) => {
   switch (type) {
     case 'evidence': {
       return state.picker.evidenceButtons[name];
