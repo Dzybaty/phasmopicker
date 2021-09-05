@@ -3,12 +3,14 @@ import {
   SET_SESSION_KEY, SET_CLIENT_ID, SET_APP_LANG,
 } from '../actions';
 
+import { getUserLanguage } from '../utils';
+
 const defaultState = {
   page: '',
   sessionId: '',
   sessionKey: null,
   clientId: null,
-  lang: 'en',
+  lang: getUserLanguage(),
 };
 
 const app = (state = defaultState, action) => {
@@ -42,7 +44,10 @@ const app = (state = defaultState, action) => {
     }
 
     case RESET_SESSION_COMPLETE: {
-      return defaultState;
+      return {
+        ...defaultState,
+        lang: getUserLanguage(),
+      };
     }
 
     case SET_SESSION_KEY: {
