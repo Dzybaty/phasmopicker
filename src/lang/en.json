@@ -114,6 +114,22 @@
   "ghost.myling.strength": "A Myling is known to be quieter when hunting.",
   "ghost.myling.weakness": "More frequently makes paranormal sounds.",
 
+  "ghost.onryo.name": "Onryo",
+  "ghost.onryo.strength": "Extinguishing a flame can cause an Onryo to attack.",
+  "ghost.onryo.weakness": "When threatened, this ghost will be less likely to hunt.",
+
+  "ghost.twins.name": "The Twins",
+  "ghost.twins.strength": "Either Twin can be angered and initiate an attack on their prey.",
+  "ghost.twins.weakness": "The Twins will often interact with the environment at the same time.",
+
+  "ghost.obake.name": "Obake",
+  "ghost.obake.strength": "Rarely leaves a trace when interacting with the environment.",
+  "ghost.obake.weakness": "Sometimes leaves behind unique evidence.",
+
+  "ghost.raiju.name": "Raiju",
+  "ghost.raiju.strength": "Moves faster near electrical devices.",
+  "ghost.raiju.weakness": "Constantly disrupt electronic equipment.",
+
 
   "questions": "Questions",
   "question.radio": "Spirit Box",
