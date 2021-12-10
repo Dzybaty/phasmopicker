@@ -125,6 +125,12 @@ const ghosts = [
     strength: 'ghost.raiju.strength',
     weakness: 'ghost.raiju.weakness',
   },
+  {
+    name: 'ghost.mimic.name',
+    evidences: [SPIRIT_BOX, FINGERPRINTS, TEMPERATURE],
+    strength: 'ghost.mimic.strength',
+    weakness: 'ghost.mimic.weakness',
+  },
 ];
 
 export default ghosts;
