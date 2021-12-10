@@ -1,6 +1,6 @@
 import { analytics } from './firebase';
 
-const KEEP_ALIVE_INTERVAL = 25000;
+const keepAliveInterval = Number(process.env.REACT_APP_KEEP_ALIVE_INTERVAL) || 25000;
 
 const activityKeepAlive = () => {
   const runService = () => {
@@ -9,8 +9,8 @@ const activityKeepAlive = () => {
         analytics.logEvent('user_activity_keep_alive');
       }
 
-      setTimeout(runService, KEEP_ALIVE_INTERVAL);
-    }, KEEP_ALIVE_INTERVAL);
+      setTimeout(runService, keepAliveInterval);
+    }, keepAliveInterval);
   };
 
   runService();
