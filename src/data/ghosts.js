@@ -127,7 +127,7 @@ const ghosts = [
   },
   {
     name: 'ghost.mimic.name',
-    evidences: [SPIRIT_BOX, FINGERPRINTS, TEMPERATURE],
+    evidences: [SPIRIT_BOX, FINGERPRINTS, TEMPERATURE, GHOST_ORB],
     strength: 'ghost.mimic.strength',
     weakness: 'ghost.mimic.weakness',
   },
