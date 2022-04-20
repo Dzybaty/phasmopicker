@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Phasmopicker Mission Planner is a web application which helps with preparation, tracking and successfull mission completion in [Phasmophobia](https://store.steampowered.com/app/739630/Phasmophobia/) game.
 
-## Available Scripts
+_The application is not supported by the developers of Phasmophobia in any way._
 
-In the project directory, you can run:
+## Features
+- Filtering ghosts by evidence (both include and exclude options are supported)
+- Pre-mission fields to fill like Ghost Name, shyness and quests.
+- List of questions for the ghost to ask
+- Session-based rooms with realtime information synchronization between users
+- Support of localization (EN and RU are currently supported)
+- Responsive mobile-friendly interface
 
-### `yarn start`
+## Under the hood
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### ReactJS
+Application is written using [ReactJS](https://reactjs.org/) and [Redux](https://react-redux.js.org/) + [Redux Saga](https://redux-saga.js.org/) for store management.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+#### Firebase
+For data storage and synchronization [Firebase Realtime Database](https://firebase.google.com/docs/database) is used.
 
-### `yarn test`
+[Firebase Analytics](https://firebase.google.com/docs/analytics) is also used for collecting some analytics data.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### FormatJS
+This app supports internationalization through [FormatJS](https://formatjs.io/). Currently implemented locales are EN and RU.
 
-### `yarn build`
+#### MUI
+Application uses awesome library [MUI](https://mui.com/) for bootsrapping interface.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### GitHub Pages
+The frontend part is hosted and served by [GitHub Pages](https://pages.github.com/).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Available commands
+To run application in production mode use ``yarn run``.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run the app in developement mode use ``yarn start:dev``.
 
-### `yarn eject`
+After running the app can be found at [http://localhost:3000/phasmopicker](http://localhost:3000/phasmopicker).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Before pushing don't forget to run ``yarn lint`` and ``yarn test``.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To deploy the app to GitHub Pages use ``yarn deploy``.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Environment
+In order to properly work wih Firebase services and environment configurations you will need to create ``.env`` file with following variables:
+```
+REACT_APP_FIREBASE_API_KEY
+REACT_APP_FIREBASE_API_DOMAIN
+REACT_APP_FIREBASE_DB_URL
+REACT_APP_FIREBASE_APPID
+REACT_APP_FIREBASE_PROJECT_ID
+REACT_APP_FIREBASE_STORAGE_BUCKET
+REACT_APP_FIREBASE_MESSANGING_SENDER_ID
+REACT_APP_FIREBASE_MEASUREMENT_ID
+REACT_APP_ENV
+REACT_APP_KEEP_ALIVE_INTERVAL
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
