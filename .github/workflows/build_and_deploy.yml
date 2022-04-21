@@ -1,16 +1,18 @@
 name: Build and Deploy
 on:
   push:
-    branches: [ firebase-version ]
+    branches: [ master ]
 jobs:
-  build-and-deploy:
+  run-unit-tests:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.1
+      - name: Run Unit Tests
+        uses: ./.github/workflows/ci_test
 
-      - name: Install and Build
-        env:
+  build-and-deploy:
+    needs: run-unit-tests
+    runs-on: ubuntu-latest
+    env:
           REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
           REACT_APP_FIREBASE_API_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_API_DOMAIN }}
           REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
@@ -20,12 +22,19 @@ jobs:
           REACT_APP_FIREBASE_MESSANGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSANGING_SENDER_ID }}
           REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
           REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+          REACT_APP_KEEP_ALIVE_INTERVAL: ${{ secrets.REACT_APP_KEEP_ALIVE_INTERVAL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install and Build
+        uses: actions/setup-node@v3
         run: |
           yarn install
           yarn build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
+        uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
           branch: gh-pages
           folder: build
