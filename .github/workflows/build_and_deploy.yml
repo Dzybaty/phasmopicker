@@ -5,6 +5,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: github-pages
     env:
         REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
         REACT_APP_FIREBASE_API_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_API_DOMAIN }}
