@@ -23,10 +23,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run build
+      - name: Build
+        run: yarn build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.0
