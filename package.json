@@ -14,6 +14,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "nanoid": "^3.1.16",
+    "prettier": "^2.6.2",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
@@ -29,7 +30,7 @@
     "start": "react-scripts start",
     "start:dev": "cross-env REACT_APP_ENV=dev react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --colors",
     "lint": "eslint .",
     "flow": "flow",
     "eject": "react-scripts eject",
@@ -49,6 +50,15 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.browser.js"
+    ],
+    "coverageReporters": [
+      "html",
+      "text"
     ]
   },
   "devDependencies": {
