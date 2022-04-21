@@ -3,26 +3,19 @@ on:
   push:
     branches: [ master ]
 jobs:
-  run-unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Unit Tests
-        uses: ./.github/workflows/ci_test
-
   build-and-deploy:
-    needs: run-unit-tests
     runs-on: ubuntu-latest
     env:
-          REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
-          REACT_APP_FIREBASE_API_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_API_DOMAIN }}
-          REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
-          REACT_APP_FIREBASE_APPID: ${{ secrets.REACT_APP_FIREBASE_APPID }}
-          REACT_APP_FIREBASE_DB_URL: ${{ secrets.REACT_APP_FIREBASE_DB_URL }}
-          REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}
-          REACT_APP_FIREBASE_MESSANGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSANGING_SENDER_ID }}
-          REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
-          REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
-          REACT_APP_KEEP_ALIVE_INTERVAL: ${{ secrets.REACT_APP_KEEP_ALIVE_INTERVAL }}
+        REACT_APP_ENV: ${{ secrets.REACT_APP_ENV }}
+        REACT_APP_FIREBASE_API_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_API_DOMAIN }}
+        REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+        REACT_APP_FIREBASE_APPID: ${{ secrets.REACT_APP_FIREBASE_APPID }}
+        REACT_APP_FIREBASE_DB_URL: ${{ secrets.REACT_APP_FIREBASE_DB_URL }}
+        REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}
+        REACT_APP_FIREBASE_MESSANGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSANGING_SENDER_ID }}
+        REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
+        REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+        REACT_APP_KEEP_ALIVE_INTERVAL: ${{ secrets.REACT_APP_KEEP_ALIVE_INTERVAL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
