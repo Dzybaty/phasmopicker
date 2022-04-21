@@ -1,3 +1,6 @@
+[![Unit Test CI](https://github.com/Dzybaty/phasmopicker/actions/workflows/ci_test.yml/badge.svg)](https://github.com/Dzybaty/phasmopicker/actions/workflows/ci_test.yml)
+[![Build and Deploy](https://github.com/Dzybaty/phasmopicker/actions/workflows/build_and_deploy.yml/badge.svg)](https://github.com/Dzybaty/phasmopicker/actions/workflows/build_and_deploy.yml)
+
 Phasmopicker Mission Planner is a web application which helps with preparation, tracking and successfull mission completion in [Phasmophobia](https://store.steampowered.com/app/739630/Phasmophobia/) game.
 
 _The application is not supported by the developers of Phasmophobia in any way._
