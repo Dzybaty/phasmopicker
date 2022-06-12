@@ -132,7 +132,19 @@
 
   "ghost.mimic.name": "The Mimic",
   "ghost.mimic.strength": "Can mimic the abilities and traits of other ghosts.",
-  "ghost.mimic.weakness": "Will present Ghost Orbs as a secondary evidence..",
+  "ghost.mimic.weakness": "Will present Ghost Orbs as a secondary evidence.",
+
+  "ghost.deogen.name": "Deogen",
+  "ghost.deogen.strength": "Always knows where the player is during a hunt and moves very fast when going to their location.",
+  "ghost.deogen.weakness": "Moves very slowly when it sees its victim.",
+
+  "ghost.moroi.name": "Moroi",
+  "ghost.moroi.strength": "Can curse players, making them lose sanity faster while investigating.",
+  "ghost.moroi.weakness": "Smudge sticks blind the ghost for longer during hunts.",
+
+  "ghost.thaye.name": "Thaye",
+  "ghost.thaye.strength": "Entering the location makes it active, defensive and agile.",
+  "ghost.thaye.weakness": "Becomes slower and less active over time.",
 
   "questions": "Questions",
   "question.radio": "Spirit Box",

@@ -131,6 +131,24 @@ const ghosts = [
     strength: 'ghost.mimic.strength',
     weakness: 'ghost.mimic.weakness',
   },
+  {
+    name: 'ghost.deogen.name',
+    evidences: [SPIRIT_BOX, GHOST_WRITING, DOTS],
+    strength: 'ghost.deogen.strength',
+    weakness: 'ghost.deogen.weakness',
+  },
+  {
+    name: 'ghost.moroi.name',
+    evidences: [SPIRIT_BOX, TEMPERATURE, GHOST_WRITING],
+    strength: 'ghost.moroi.strength',
+    weakness: 'ghost.moroi.weakness',
+  },
+  {
+    name: 'ghost.thaye.name',
+    evidences: [GHOST_ORB, GHOST_WRITING, DOTS],
+    strength: 'ghost.thaye.strength',
+    weakness: 'ghost.thaye.weakness',
+  },
 ];
 
 export default ghosts;
