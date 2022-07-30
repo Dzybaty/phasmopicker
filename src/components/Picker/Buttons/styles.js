@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles({
   button: {
     color: (props) => props.color,
+    borderBottom: '1px solid transparent',
     margin: '0 5px',
   },
 
@@ -14,7 +15,11 @@ export default makeStyles({
 
   buttonExcluded: {
     color: (props) => props.color,
-    borderBottom: '1px solid grey',
+    textDecoration: 'line-through',
+    borderBottom: '1px solid transparent',
     margin: '0 5px',
+    '&:hover': {
+      textDecoration: 'line-through',
+    },
   },
 });
