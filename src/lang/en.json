@@ -68,7 +68,7 @@
 
   "ghost.oni.name": "Oni",
   "ghost.oni.strength": "Increased activity and ghost events.",
-  "ghost.oni.weakness": "An Oni's increased activity makes them easier to find.",
+  "ghost.oni.weakness": "More visible during hunts.",
 
   "ghost.phantom.name": "Phantom",
   "ghost.phantom.strength": "Looking at a Phantom will lower the player's sanity considerably.",
@@ -91,8 +91,8 @@
   "ghost.spirit.weakness": "Smudge sticks are more effective, preventing a hunt for longer.",
 
   "ghost.wraith.name": "Wraith",
-  "ghost.wraith.strength": "Does not leave UV footprints after stepping in salt.",
-  "ghost.wraith.weakness": "Will become more active if it steps in salt.",
+  "ghost.wraith.strength": "Cannot be tracked by footsteps.",
+  "ghost.wraith.weakness": "Will not step in salt.",
 
   "ghost.yurei.name": "Yurei",
   "ghost.yurei.strength": "Has a stronger effect on sanity.",
@@ -104,14 +104,14 @@
 
   "ghost.hantu.name": "Hantu",
   "ghost.hantu.strength": "Lower temperatures allow the Hantu to move faster.",
-  "ghost.hantu.weakness": "Warmer areas slow the Hantu's movement.",
+  "ghost.hantu.weakness": "Warmer areas slow the Hantu's movement. Spotted easily with breaker off.",
 
   "ghost.goryo.name": "Goryo",
-  "ghost.goryo.strength": "Can only be seen interacting with D.O.T.S. through a camera when nobody is nearby.",
+  "ghost.goryo.strength": "Cannot wander far from its room, or change favorite rooms.",
   "ghost.goryo.weakness": "Tends to wander away less from its ghost room.",
 
   "ghost.myling.name": "Myling",
-  "ghost.myling.strength": "Has quieter footsteps during a hunt.",
+  "ghost.myling.strength": "Produces quieter sounds during a hunt.",
   "ghost.myling.weakness": "Produces paranormal sounds more frequently.",
 
   "ghost.onryo.name": "Onryo",
@@ -119,12 +119,12 @@
   "ghost.onryo.weakness": "The presence of flames reduces the Onryo's ability to attack.",
 
   "ghost.twins.name": "The Twins",
-  "ghost.twins.strength": "Either Twin may start a hunt, though not at the same time..",
+  "ghost.twins.strength": "Either Twin may start a hunt, though not at the same time.",
   "ghost.twins.weakness": "Will often interact with the environment at the same time.",
 
   "ghost.obake.name": "Obake",
   "ghost.obake.strength": "May leave fingerprints that disappear quicker.",
-  "ghost.obake.weakness": "Has a small chance of leaving six-fingered handprints.",
+  "ghost.obake.weakness": "Has a small chance of leaving six-fingered handprints. Can quickly shapeshift into another model during a hunt.",
 
   "ghost.raiju.name": "Raiju",
   "ghost.raiju.strength": "Moves faster near electrical devices.",
@@ -139,7 +139,7 @@
   "ghost.deogen.weakness": "Moves very slowly when it sees its victim.",
 
   "ghost.moroi.name": "Moroi",
-  "ghost.moroi.strength": "Can curse players, making them lose sanity faster while investigating.",
+  "ghost.moroi.strength": "Moves noticeably faster at low player sanity and can make players lose sanity quicker than usual while investigating.",
   "ghost.moroi.weakness": "Smudge sticks blind the ghost for longer during hunts.",
 
   "ghost.thaye.name": "Thaye",
