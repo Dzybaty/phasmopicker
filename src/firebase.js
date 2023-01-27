@@ -22,6 +22,7 @@ let analytics;
 
 if (isDevEnv()) {
   analytics = {
+    // eslint-disable-next-line no-console
     logEvent: (eventName, options) => console.log('Mocked analytics request:', eventName, options),
   };
 } else {
