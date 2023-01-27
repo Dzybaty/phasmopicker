@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/phasmopicker/static/css/main.9111476a.chunk.css",
-    "main.js": "/phasmopicker/static/js/main.87c12bee.chunk.js",
-    "main.js.map": "/phasmopicker/static/js/main.87c12bee.chunk.js.map",
-    "runtime-main.js": "/phasmopicker/static/js/runtime-main.b9d4abce.js",
-    "runtime-main.js.map": "/phasmopicker/static/js/runtime-main.b9d4abce.js.map",
-    "static/js/2.95346fb2.chunk.js": "/phasmopicker/static/js/2.95346fb2.chunk.js",
-    "static/js/2.95346fb2.chunk.js.map": "/phasmopicker/static/js/2.95346fb2.chunk.js.map",
+    "main.css": "/phasmopicker/static/css/main.c173a76e.css",
+    "main.js": "/phasmopicker/static/js/main.3d27a839.js",
     "index.html": "/phasmopicker/index.html",
-    "precache-manifest.0c3248b7c473fa40cd99977600012857.js": "/phasmopicker/precache-manifest.0c3248b7c473fa40cd99977600012857.js",
-    "service-worker.js": "/phasmopicker/service-worker.js",
-    "static/css/main.9111476a.chunk.css.map": "/phasmopicker/static/css/main.9111476a.chunk.css.map",
-    "static/js/2.95346fb2.chunk.js.LICENSE.txt": "/phasmopicker/static/js/2.95346fb2.chunk.js.LICENSE.txt"
+    "main.c173a76e.css.map": "/phasmopicker/static/css/main.c173a76e.css.map",
+    "main.3d27a839.js.map": "/phasmopicker/static/js/main.3d27a839.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.b9d4abce.js",
-    "static/js/2.95346fb2.chunk.js",
-    "static/css/main.9111476a.chunk.css",
-    "static/js/main.87c12bee.chunk.js"
+    "static/css/main.c173a76e.css",
+    "static/js/main.3d27a839.js"
   ]
 }
