@@ -22,4 +22,10 @@ export default makeStyles({
       textDecoration: 'line-through',
     },
   },
+
+  buttonHint: {
+    padding: '4px 8px',
+    fontSize: '.9rem',
+    maxWidth: 500,
+  },
 });

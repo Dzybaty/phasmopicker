@@ -82,12 +82,11 @@ describe('Picker reducer', () => {
           "EVENT": false,
           "HUNT": false,
           "MOTION": false,
+          "PARABOLIC_MIC": false,
           "PHOTO": false,
           "REPEL": false,
-          "SALT": false,
           "SANITY": false,
           "SMUDGE": false,
-          "TEMPERATURE": false,
         },
         "selectedEvidences": Array [],
         "talksToEveryOne": false,
@@ -98,14 +97,20 @@ describe('Picker reducer', () => {
 
 describe('FILTER_GHOSTS action', () => {
   it('should filter ghosts by evidence selection', () => {
-    updatedState = picker(defaultState, filterGhosts(EMF, EVIDENCE_STATUS_SELECTED));
+    updatedState = picker(
+      defaultState,
+      filterGhosts(EMF, EVIDENCE_STATUS_SELECTED),
+    );
     expect(updatedState.ghosts).toHaveLength(2);
     expect(updatedState.ghosts[0].name).toEqual('Test Ghost 1');
     expect(updatedState.ghosts[1].name).toEqual('Test Ghost 3');
     expect(updatedState.selectedEvidences).toEqual([EMF]);
     expect(updatedState.evidenceButtons.EMF).toEqual(EVIDENCE_STATUS_SELECTED);
 
-    updatedState = picker(updatedState, filterGhosts(TEMPERATURE, EVIDENCE_STATUS_SELECTED));
+    updatedState = picker(
+      updatedState,
+      filterGhosts(TEMPERATURE, EVIDENCE_STATUS_SELECTED),
+    );
     expect(updatedState.ghosts).toHaveLength(1);
     expect(updatedState.ghosts[0].name).toEqual('Test Ghost 3');
     expect(updatedState.selectedEvidences).toEqual([EMF, TEMPERATURE]);
@@ -116,13 +121,19 @@ describe('FILTER_GHOSTS action', () => {
   });
 
   it('should filter ghosts by evidence exclusion', () => {
-    updatedState = picker(defaultState, filterGhosts(EMF, EVIDENCE_STATUS_EXCLUDED));
+    updatedState = picker(
+      defaultState,
+      filterGhosts(EMF, EVIDENCE_STATUS_EXCLUDED),
+    );
     expect(updatedState.ghosts).toHaveLength(1);
     expect(updatedState.ghosts[0].name).toEqual('Test Ghost 2');
     expect(updatedState.excludedEvidences).toEqual([EMF]);
     expect(updatedState.evidenceButtons.EMF).toEqual(EVIDENCE_STATUS_EXCLUDED);
 
-    updatedState = picker(updatedState, filterGhosts(TEMPERATURE, EVIDENCE_STATUS_EXCLUDED));
+    updatedState = picker(
+      updatedState,
+      filterGhosts(TEMPERATURE, EVIDENCE_STATUS_EXCLUDED),
+    );
     expect(updatedState.ghosts).toHaveLength(0);
     expect(updatedState.excludedEvidences).toEqual([EMF, TEMPERATURE]);
     expect(updatedState.evidenceButtons.EMF).toEqual(EVIDENCE_STATUS_EXCLUDED);
@@ -132,13 +143,19 @@ describe('FILTER_GHOSTS action', () => {
   });
 
   it('should filter ghosts by evidence reset', () => {
-    updatedState = picker(defaultState, filterGhosts(EMF, EVIDENCE_STATUS_EXCLUDED));
+    updatedState = picker(
+      defaultState,
+      filterGhosts(EMF, EVIDENCE_STATUS_EXCLUDED),
+    );
     expect(updatedState.ghosts).toHaveLength(1);
     expect(updatedState.ghosts[0].name).toEqual('Test Ghost 2');
     expect(updatedState.excludedEvidences).toEqual([EMF]);
     expect(updatedState.evidenceButtons.EMF).toEqual(EVIDENCE_STATUS_EXCLUDED);
 
-    updatedState = picker(updatedState, filterGhosts(EMF, EVIDENCE_STATUS_INIT));
+    updatedState = picker(
+      updatedState,
+      filterGhosts(EMF, EVIDENCE_STATUS_INIT),
+    );
     expect(updatedState.ghosts).toHaveLength(3);
     expect(updatedState.excludedEvidences).toEqual([]);
     expect(updatedState.selectedEvidences).toEqual([]);
