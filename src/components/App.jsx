@@ -7,8 +7,8 @@ import {
   changePage, resetSession,
 } from '../actions';
 
-import langEN from '../lang/en.json';
-import langRU from '../lang/ru.json';
+import langEN from '../translations/en.json';
+import langRU from '../translations/ru.json';
 
 import { pageSelector, currentLangSelector } from '../selectors';
 

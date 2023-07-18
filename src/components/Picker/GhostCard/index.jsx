@@ -42,9 +42,13 @@ const GhostCard = ({ data, selectedEvidences }) => {
           ))
         }
         <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.strength' })}</Typography>
-        <Typography className={css.content}>{formatMessage({ id: strength })}</Typography>
+        <Typography className={css.content}>
+          {formatMessage({ id: strength }, { br: <br /> })}
+        </Typography>
         <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.weakness' })}</Typography>
-        <Typography className={css.content}>{formatMessage({ id: weakness })}</Typography>
+        <Typography className={css.content}>
+          {formatMessage({ id: weakness }, { br: <br /> })}
+        </Typography>
       </Box>
     </Fade>
   );
