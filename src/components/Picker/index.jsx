@@ -105,7 +105,7 @@ const Picker = () => {
           />
           <CustomButton
             type="reset"
-            color="grey"
+            color="red"
             text={formatMessage({ id: 'picker.reset' })}
             handleClick={handleReset}
           />

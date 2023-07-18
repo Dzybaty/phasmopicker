@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
+import Link from '@material-ui/core/Link';
 
 import { getEvidenceNameByKey } from '../../../utils';
 
@@ -16,7 +17,7 @@ const GhostCard = ({ data, selectedEvidences }) => {
   const { formatMessage } = useIntl();
 
   const {
-    name, strength, weakness, evidences,
+    name, strength, weakness, evidences, wikiURL,
   } = data;
 
   useEffect(() => {
@@ -30,7 +31,9 @@ const GhostCard = ({ data, selectedEvidences }) => {
   return (
     <Fade in={isOpen} timeout={1000}>
       <Box className={css.root}>
-        <Typography variant="h4" className={css.header}>{formatMessage({ id: name })}</Typography>
+        <Link variant="h4" href={wikiURL} target="_blank" rel="noreferrer" className={css.header}>
+          {formatMessage({ id: name })}
+        </Link>
         <Typography variant="h6" className={css.subHeader}>{formatMessage({ id: 'ghostCard.evidences' })}</Typography>
         {
           evidences.map((el) => (
@@ -60,6 +63,7 @@ GhostCard.propTypes = {
     evidences: PropTypes.arrayOf(PropTypes.string).isRequired,
     strength: PropTypes.string.isRequired,
     weakness: PropTypes.string.isRequired,
+    wikiURL: PropTypes.string.isRequired,
   }).isRequired,
   selectedEvidences: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
