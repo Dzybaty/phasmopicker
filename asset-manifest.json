@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/phasmopicker/static/css/main.c173a76e.css",
-    "main.js": "/phasmopicker/static/js/main.1f83ea7b.js",
+    "main.js": "/phasmopicker/static/js/main.78156822.js",
     "index.html": "/phasmopicker/index.html",
     "main.c173a76e.css.map": "/phasmopicker/static/css/main.c173a76e.css.map",
-    "main.1f83ea7b.js.map": "/phasmopicker/static/js/main.1f83ea7b.js.map"
+    "main.78156822.js.map": "/phasmopicker/static/js/main.78156822.js.map"
   },
   "entrypoints": [
     "static/css/main.c173a76e.css",
-    "static/js/main.1f83ea7b.js"
+    "static/js/main.78156822.js"
   ]
 }
