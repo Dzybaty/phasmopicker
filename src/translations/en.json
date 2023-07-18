@@ -205,5 +205,6 @@
   "quests.salt": "Salt",
   "quests.sanity": "Sanity",
   "quests.smudge": "Smudge",
-  "quests.temperature": "Temperature"
+  "quests.temperature": "Temperature",
+  "quests.parabolic": "Microphone"
 }

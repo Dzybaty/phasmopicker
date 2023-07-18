@@ -10,6 +10,7 @@ const SALT = 'SALT';
 const SANITY = 'SANITY';
 const HUNT = 'HUNT';
 const REPEL = 'REPEL';
+const PARABOLIC_MIC = 'PARABOLIC_MIC';
 
 export default [
   {
@@ -59,5 +60,9 @@ export default [
   {
     key: REPEL,
     localizedMessageId: 'quests.repel',
+  },
+  {
+    key: PARABOLIC_MIC,
+    localizedMessageId: 'quests.parabolic',
   },
 ];
